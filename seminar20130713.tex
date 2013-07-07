@@ -1,0 +1,239 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+\title{Learning under Fear of Floating}
+\author{Saki Bigio, Journal of Economic Dynamics and Control, 2009}
+\date{\today}
+
+\begin{document}
+\frame{\titlepage}
+\section[Outline]{}
+\frame{\tableofcontents}
+\section{Introduction}
+\begin{frame} 
+\frametitle{Introduction} 
+\framesubtitle{On fear of floating, economics \'{a} l\`{a} Sargent, and calibration} 
+
+This paper tries to explain how some developing countries overcome the ``fear of
+floating" problem. 
+
+The paper provides:
+\begin{enumerate} 
+\item Small description of how the``fear of floating" problem has become weaker
+in the past years.
+\item A simple New Keynesian small open economy model that focuses on a
+developing country's central banker problem.
+\item An analytical solution to the model under certain conditions.
+\item Introduction of multiplier preferences (Hansen and Sargent, 2006) to see if the solution (policy) is
+altered.
+\item Learning properties of Central Banks in developing countries and time
+varying parameters.
+\item Conclusions.
+\end{enumerate} 
+\end{frame}
+
+\begin{frame} 
+\frametitle{Introduction} 
+\begin{enumerate} 
+\item \textbf{Style:} The model of this paper is based on Sargent's concept that a
+model is nothing else but a probability distribution over certain outcomes.
+\textbf{Results are not elegant}, to say the least. It borrows methods from a 
+line of research in control theory, popularized by Sargent and Hansen (Wanting Robustness in Macroeconomics, 2007),
+which is interested in decision-making under dynamic environments.
+ \item \textbf{Bayesian modeling:} This paper follows the motto:``Your model is wrong. Therefore, you also need to model your model
+ misspecification in your model". The dynamic system needs to capture
+ misspecification in some way. A common way, if you have 2 models, is to think
+ them as state matrices A and B,  in a random state evolution. The controller
+ needs to make an inference about these matrices as time evolves, using numerical
+methods. To see the mechanics of a Bayesian model closer, I present this
+example:
+ \end{enumerate}
+ \end{frame}
+ 
+\begin{frame} 
+\frametitle{Introduction} 
+\textbf{Bayesian model example (Cogley, Colacito and Sargent, 2007):} A decision
+maker wants to maximize the following function of states $s_t$ and controls
+$v_t$:
+\begin{equation*}
+\begin{aligned}
+& \underset{}{\text{max}}
+& & E_{0} $\displaystyle\sum\limits_{t=0}^{\infty} \betha^t r(s_t,v_t)$. \\
+& z_{t+1} = z_{t},
+& & s_{t+1} = g(s_t, v_t, z_t, \epsilon_{t+1}),
+\end{aligned}
+\end{equation*}
+where $\epsilon_{t+1}$ is an i.i.d. vector of shocks and $z_t \in \{1,2\}$ is a
+hidden state variable that indexes submodels. State variable $z_t$ is time
+invariant, thus, one of the two submodels governs the data for all period. But
+$z_t$ is unknown to the decision maker. He has a prior probability
+$P(z=1)=\pi_{0}$. Given history $s^t = [s_t, s_{t-1},...,s_0]$, the decision
+maker recursively computes $pi_t=P(z=1|s^t)$ via Bayes' law:
+\end{frame}
+
+\begin{frame} 
+\frametitle{Introduction} 
+\begin{equation}
+\pi_{t+1} = B(\pi_t, g(s_t, v_t, z_t, \epsilon_{t+1})).
+\end{equation}
+E.g. In Cogley, Colacito, Hansen and Sargent (2008), one of the submodels is a
+Keynesian model of a Phillips curve, while the other is a new classical model. 
+The decision maker must decide while he learns、but he doesn't know $z_t$. 
+His prior probability $\pi_t$ becomes a state variable in a Bellman equation
+that captures his incentive to experiment:
+\begin{equation}
+V(s,\pi) =  \underset{v}{\text{max}} \{ r(s,v) + E_z[E_{s^*,\pi^*}( \beta V(s^*,\pi^*) |s,v,\pi,z) | s,v,\pi]\}, s.t.
+\end{equation}
+\begin{equation}
+s^{*} = g(s,v,z,\epsilon^*),
+\end{equation}
+\begin{equation}
+\pi^{*} = B(\pi,g(s,v,z,\epsilon^*)),
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+where the asterisks denote next-period values, $E_z$ integration with
+respect to the distribution of the hidden state $z$ that indexes submodels, and
+$E_{s^*,\pi^*}$ denotes integration with respect to the joint distribution of
+$(s^*,\pi^*)$ conditional on $(s,v,\pi,z)$. The Bellman equation expresses the motivation
+a decision maker has to experiment (to take into consideration how his decision
+affects future values of $\pi^*$). This equation shows 2 possible types of 
+misspecification: distribution of $(s^*, \pi^*)$ conditional on $(s,v,\pi,z)$
+and misspecification of the probability $\pi$ over submodels $z$.
+\newline
+\newline
+Recent developments in macroeconomics make it possible to get a decision rule that is
+robust to both misspecifications. Examples include using  the method of risk-sensitivity operators (Hansen and Sargent, 2007)
+or applying a Kalman filter.
+\end{frame}
+
+\section{Fear of Floating}
+ \begin{frame} 
+\frametitle{Fear of Floating} 
+\framesubtitle{Cross-country evidence} 
+In developing economies, Central Bankers think of exchange rates as having two
+potential effects. High unexpected depreciations
+\begin{enumerate} 
+\item Standard economics textbook effect: Are good for agents who make money in dollars (exporting sector). Under
+nominal rigidities, a sudden shift in value of nominal exchange rate 
+translates to a sudden shift in real exchange rate and produces positive wealth effects.
+\item Balance sheet effect: Are bad for agents that have a considerable
+proportion of their assets in foreign currency (e.g. partial dollarization in undeveloped
+financial markets, where firms hold assets in domestic currency while liabilities in
+US Dollars, with no derivatives).
+\end{enumerate} 
+\end{frame}
+
+\begin{frame} 
+\frametitle{Fear of Floating} 
+\textbf{Fact:} In recent years, a large number of developing countries
+seem to have moved towards more flexible exchange rates.
+\newline
+\newline 
+\textbf{Hypothesis:}  Maybe Central Bankers learned about these effects.
+\newline
+\newline
+\textbf{Method:} Model the problem of the Central Bank as having uncertainty
+over a parameter $\theta$ that englobes both effects. 2 sub-models. Each sub-model delivers opposite effects.
+The Central Banker fears missing the true model. A Bayesian Central Banker
+will react according prior beliefs about either model and
+update them via Bayes rule. The paper also considers the case when
+the (optimal) Central Bank behaves according to a policy consistent
+with fear of misspecification.  
+\end{frame}
+
+\begin{frame} 
+\textbf{Hypothesis:} Developing Central Banks fixed echanged raes in the
+nineties and took them more than 10 years to learn they were wrong.
+Slow learning was caused by a fear of floating policy. Because of uncertainty,
+no meaningful exchange rate movement is allowed. This makes it difficult to
+detect the real effect and correct model. 
+\newline
+\newline
+\textbf{TODO:} Calibration of this paper model shows it takes 5 years for
+Central Bankers to learn. This is faster than what cross-country data suggests (10
+years). Maybe there was an exogenous parameter change from balance-sheet model
+to textbook model in the 2000s?
+\end{frame}
+
+
+\begin{frame} 
+\frametitle{Learning under Fear} 
+\framesubtitle{Evidence} 
+\includegraphics[width=0.88\textwidth]{00a.pdf}
+\end{frame}
+
+\section{Model}
+\begin{frame} 
+\frametitle{A Standard Small Open Economy Model: The Central Banker problem} 
+\framesubtitle{Assumptions} 
+Let the Phillips curve be represented as:
+\begin{equation}
+\pi_t = \beta E_t [\pi_{t+1}] + \gamma y_t + \varepsilon_{\pi,t},
+\end{equation}
+where $\pi_t$ is the inflation rate, $y_t$ in the output gap $\frac{GDP_{actual}-GDP_{potential}}{GDP_{potential}}$
+and  $\beta$ is the period discount factor. Notice that for $f: \mathbb{R} \rightarrow
+\mathbb{R}$,
+\begin{equation}
+\pi_t = f(E_t[\pi_{t+1}], y_t),
+\end{equation}
+where  $\varepsilon_{\pi,t}$ is a cost-push shock.
+\end{frame}
+
+\begin{frame} 
+Let the aggregate demand equation:
+\begin{equation}
+y_t = E_t[y_{t+1}] - \chi(i_t - E_t[\pi_{t+1}] - r_t^n) + \theta
+E_t[\Delta s_{t+1}] + \varepsilon_{y,t}.
+\end{equation}
+Intuitively, the output gap depends on expected output for next period, the
+gap between real interest rates and its natural level, expected
+nominal depreciation $\theta
+E_t[\Delta s_{t+1}] $ and a demand shock. 
+\newline
+\newline
+The textbook model has positive $\theta$.
+The balance sheet model has negative $\theta$.
+Also notice that the expected nominal exchange rate depreciation comes from an interest rate parity equation:
+\begin{equation}
+E_t[\Delta s_{t+1}] = i_t - i_t^* - \varepsilon_{et},
+\end{equation}
+which is a non-arbitrage condition between domestic $i_t$ and foreign $i_t^*$. $\varepsilon_{et}$
+is a financial shock. 
+\newline
+\newline
+$r_t$ follows an autoregressive process:
+\begin{equation}
+r_t^n = \rho_n r_t^n + \varepsilon_t^r.
+\end{equation}
+\end{frame}
+
+\section{Optimal Bayesian Policy}
+\begin{frame} 
+\frametitle{Optimal Bayesian Policy} 
+\end{frame}
+
+
+\section{Optimal Bayesian Policy}
+\begin{frame} 
+\frametitle{Optimal Bayesian Policy} 
+\end{frame}
+
+
+\section{Robust Policy}
+\begin{frame} 
+\frametitle{Robust Policy} 
+\end{frame}
+
+
+\section{Model Dynamics and Learning}
+\begin{frame} 
+\frametitle{Effects of increase in rate of monetary expansion} 
+\includegraphics[width=0.85\textwidth]{phase5.pdf}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Final Remarks} 
+
+\end{frame} 
+\end{document}
