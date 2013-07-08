@@ -1,7 +1,7 @@
 Thesis
 ======
 
-Thesis and related documents
+Master thesis and related documents
 
 ## Topic
 
