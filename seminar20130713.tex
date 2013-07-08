@@ -1,7 +1,8 @@
 \documentclass{beamer}
 \usetheme{Frankfurt}
 \title{Learning under Fear of Floating}
-\author{Saki Bigio, Journal of Economic Dynamics and Control, 2009}
+\author{Osaka, DMW}
+\subtitle{Saki Bigio, Journal of Economic Dynamics and Control, 2009}
 \date{\today}
 
 \begin{document}
@@ -12,10 +13,8 @@
 \begin{frame} 
 \frametitle{Introduction} 
 \framesubtitle{On fear of floating, economics \'{a} l\`{a} Sargent, and calibration} 
-
 This paper tries to explain how some developing countries overcome the ``fear of
 floating" problem. 
-
 The paper provides:
 \begin{enumerate} 
 \item Small description of how the``fear of floating" problem has become weaker
@@ -199,41 +198,997 @@ Also notice that the expected nominal exchange rate depreciation comes from an i
 E_t[\Delta s_{t+1}] = i_t - i_t^* - \varepsilon_{et},
 \end{equation}
 which is a non-arbitrage condition between domestic $i_t$ and foreign $i_t^*$. $\varepsilon_{et}$
-is a financial shock. 
-\newline
-\newline
-$r_t$ follows an autoregressive process:
+is a financial shock. Also, assume that $r_t$ follows an autoregressive process:
 \begin{equation}
 r_t^n = \rho_n r_t^n + \varepsilon_t^r.
 \end{equation}
 \end{frame}
 
+\begin{frame} 
+Following Clarida et al. (A simple framework for international monetary
+policy analysis, Journal of Monetary Economics, 2002), the Central Banker
+problem can be expressed as:
+\begin{equation*}
+\begin{aligned}
+& \underset{}{\text{minimize}}
+& & L_\tau = E_\tau \left [ \sum_{t=\tau}^\infty \beta^{t-\tau} (\pi_t^2 +  w y_t^2 ) \right ] \\
+& \text{subject to}
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\pi_t = \beta E_t [\pi_{t+1}] + \gamma y_t + \varepsilon_{\pi,t},
+\end{equation*}
+\begin{equation*}
+y_t = E_t[y_{t+1}] - \chi(i_t - E_t[\pi_{t+1}] - r_t^n) + \theta
+E_t[\Delta s_{t+1}] + \varepsilon_{y,t},
+\end{equation*}
+\begin{equation*}
+E_t[\Delta s_{t+1}] = i_t - i_t^* - \varepsilon_{et} ,
+\end{equation*}
+\begin{equation*}
+r_t^n = \rho_n r_t^n + \varepsilon_t^r.
+\end{equation*}
+Optimal policies with certainty will be the limit cases of
+the Bayesian policies described in the next section. Optimal discretionary
+policy (without commitment) can be obtained as a function of parameters and
+observed shocks. Credible policies under commitment remains an unsolved
+question.
+\end{frame}
+
+\begin{frame} 
+Equations (5), (6) and (7) can be reduced to a simple two-equation systems by
+substitution. Replacing (7) in (6) and setting $\mu_{y,t} = \chi r^n_t -\theta i^*_t - \theta \varepsilon_{et}+\varepsilon_{y,t}$:
+\begin{equation}
+\pi_t = \beta E_t [\pi_{t+1}] + \gamma y_t + \varepsilon_{\pi,t}
+\end{equation}
+\begin{equation}
+y_t = E_t [y_{t+1}] - (\chi - \theta) i_t + \chi E_t [\pi_{t+1}] + \mu_{y,t}.
+\end{equation}
+Equation 5 (a.k.a Phillips curve) and equation 7 (aggregate demand equation, a.k.a IS equation)
+can be used to infer the policy rate that implements the solution:
+\begin{equation}
+\mathcal{L}_\tau = E_\tau \left [ \sum_{t=\tau}^\infty \beta^{t-\tau} \left \{\pi_t^2 + w y_t^2 + \lambda_t (\beta \pi_{t+1} + \gamma y_t + \varepsilon_{\pi,t} - \pi_t) \right \} \right
+].
+\end{equation}
+A discretionary solution implies that the following first-order conditions with
+respect to $E_t [\pi_t]$ and $E_t [y_t]$ hold $\forall t$:
+\end{frame}
+
+\begin{frame} 
+\begin{equation}
+2 E_t [\pi_t] = E_t[\lambda_t],
+\end{equation}
+\begin{equation}
+2 w E_t [y_t] + \gamma E_t [\lambda_t] = 0.
+\end{equation}
+Assume the following relation between the 2 variables:
+\begin{equation}
+-\frac{\gamma}{w} E_t [\pi_t] = E_t [y_t].
+\end{equation}
+Replace the above condition in the Phillips curve, to get:
+\begin{equation}
+\left ( 1+\frac{\gamma^2}{w} \right ) E_t [\pi_t] = \beta E_\tau [\pi_{t+1} ] + \rho_\pi
+\varepsilon_{\pi,t-1}.
+\end{equation}
+\textbf{How to solve this equation?} Guess a solution for the
+expectations operator
+\begin{equation}
+E_t[\pi_t] = \Lambda \varepsilon_{\pi,t-1}
+\end{equation}
+where $\Lamba$ is a parameter to be determined. This implies:
+\begin{equation}
+E_t [\pi_{t+1} = \lambda \rho_\pi \varepsilon_{\pi,t-1}.
+\end{equation}
+Substitute this guess back in the Phillips curve, and solve for the unknown
+parameter:
+\end{frame}
+
+\begin{frame} 
+\begin{equation}
+\Lambda = \frac{\rho_\pi}{1+\frac{\gamma^2}{w} - \beta \rho_\pi}.
+\end{equation}
+Remember equation (11)? Move the interest rate to the left hand side:
+\begin{equation}
+i_t = \frac{1}{(\chi-\theta)} \{E_t[y_{t+1}] - E_t[y_t] + \chi E_t [\pi_{t+1}] + E_t[\mu_{y,t}]
+\}.
+\end{equation}
+Now replace the initial guess into the interest rate function above us:
+\begin{equation}
+i_t = \frac{1}{(\chi-\theta)} \left \{ \left ( \frac{\gamma}{w} (\frac{1}{\rho_\pi} - 1) + \chi \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + E_t [\mu_{y,t}] \right \}
+\end{equation}
+\begin{theorem}
+In a case of perfect certainty, the optimal policy for this model exists and has
+the shape:
+\begin{equation}
+i_t = \frac{1}{(\chi-\theta)} \left \{ \left ( \frac{\gamma}{w} (\frac{1}{\rho_\pi} - 1) + \chi \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + E_t [\mu_{y,t}] \right \}
+\end{equation}
+\end{theorem}
+\end{frame}
+
+\begin{frame} 
+Now, if $\rho_\pi_t \to 0$:
+\begin{equation}
+i_t \to \frac{1}{2} \frac{1}{(\chi - \theta)} E_t [\mu_{y,t}].
+\end{equation}
+which looks much prettier and should represent a simple rule that attains zero
+inflation by reacting to observed shocks to the output gap.
+\newline
+\newline
+Assume that $\varepsilon_{e,t}$ and $\varepsilon_{i,t}$ are observable and let
+the solution to the expectation of exogenous shocks be:
+\begin{equation}
+E_t[\mu_{y,t}] = \chi (\rho_r \varepsilon_{r,t-1} ) - \theta \varepsilon_{i,t} - \theta \varepsilon_{e,t} + \rho_{y,t}
+\varepsilon_{y,t-1}.
+\end{equation}
+Substitute this in equation (11) and solve for output:
+\begin{equation}
+y_t = E_t [y_{t+1}] - \left ( \frac{\gamma}{w} ( \frac{1}{\rho_\pi} - 1) + \chi \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + \chi E_t[\pi_{t+1}] + \mu_{y,t} - E_t[\mu_{y,t}]
+\end{equation}
+Using the initial guess, this equation can be simplified to:
+\begin{equation}
+y_t = -\frac{\gamma}{w} \Lambda \varepsilon_{\pi,\tau-1} + \mu_{y,t} -
+E_t[\mu_{y,t}].
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+This is somewhat a confirmation that the guess was correct. Since 
+$E_t[\mu_{y,t}] = \mu_{y,t} - \chi \nu_{r,t} - \nu_{y,t}$:
+\begin{equation}
+y_t = -\frac{\gamma}{w} \Lambda \varepsilon_{\pi,\tau-1} + \chi \nu_{r,t} +
+\nu_{y,t}.
+\end{equation}
+But from our first equation (5),  $\pi_t = \beta E_t [\pi_{t+1}] + \gamma y_t +
+\varepsilon_{\pi,t}$, so:
+\begin{equation}
+\begin{align}
+\pi_t &= \beta \Lambda \rho_\pi \varepsilon_{\pi,t-1} + \gamma \left ( -\frac{\gamma}{w} \Lambda \varepsilon_{\pi,\tau-1} + \chi \nu_{r,t} + \nu_{y,t} \right ) + \varepsilon_{\pi,t} \\
+&= \Lambda (\beta \rho_\pi - \frac{\gamma^2}{w}) \varepsilon_{\pi,t-1} + \gamma \chi \nu_{r,t} + \gamma \nu_{y,t} + \rho_p \varepsilon_{\pi,t-1} + \nu_{\pi,t}
+\end{align}
+\end{equation}
+Summarizing:
+\begin{equation}
+\pi_t = ((\Lambda \beta + 1) \rho_\pi - \frac{\gamma^2}{w} \Lambda) \varepsilon_{\pi,t-1} + \gamma \chi \nu_{r,t} + \gamma \nu_{y,t} +
+\nu_{\pi,t}.
+\end{equation}
+Recall the uncovered interest rate parity equation (8) that states $E_t[\Delta s_{t+1}] = i_t - i_t^* -
+\varepsilon_{et}$? We used it to obtain the value of the exchange rate:
+\begin{equation}
+E_t [\Delta s_{t+1}] = i_t - i_t^* - \varepsilon_{et}.
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+\textbf{Steady state:} Can be obtained directly from the theorem equation of
+optimal interest rate. In the absence of shocks, consider only
+$\bar{\mu}_{y,t}$, $\bar{\iota}$ and $\bar{\pi}$. Steady state for the stochastic
+process is:
+\begin{equation}
+\bar{\mu}_y = \chi \bar{r} + \theta \bar{\iota}^*.
+\end{equation}
+Then, for the interest rate:
+\begin{equation}
+\bar{\iota} = \frac{1}{(\chi-\theta)}[\bar{\mu}_y].
+\end{equation}
+From the steady state version of Phillips curve and output gap condition:
+\begin{equation}
+0 = - (\chi - \theta) \bar{\iota} + \chi \bar{\pi} + \bar{\mu}_y,
+\end{equation}
+which implies:
+\begin{equation}
+\bar{\pi} = 0.
+\end{equation}
+So, in absence of shocks, the policy gives the ``highest lowest cost possible".
+\end{frame}
+
+\begin{frame} 
+\frametitle{State-Space representation} 
+\textbf{State-Space representation:} Writing the dynamic model in state-space representation form can be useful for parameter estimation, inference and Kalman filter usage.
+The exogenous state block comes from the vector equation $S_t = A S_{t-1} + B
+w_t$, which in matrix notation yields:
+{\tiny
+\begin{equation}
+\begin{bmatrix}
+\varepsilon_{\pi,t} \\
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{y,t} \\
+\varepsilon_{y,t-1} \\
+r_t^n \\
+r_{t-1}^n \\
+i_t^* \\
+\varepsilon_{e,t} \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\rho_\pi & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \rho_y & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & \rho_r & 0 & 0 & 0 & r^n \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \rho_i & 0 & r^n \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \rho_e & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{\pi,t-2} \\
+\varepsilon_{y,t-1} \\
+\varepsilon_{y,t-2} \\
+r_{t-1}^n \\
+r_{t-2}^n \\
+i_{t-1}^* \\
+\varepsilon_{e,t-1} \\
+1
+\end{bmatrix}
++
+\begin{bmatrix}
+\sigma_\pi & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & \sigma_y & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \sigma_r & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \sigma_i & 0 \\
+0 & 0 & 0 & 0 & \sigma_e \\
+0 & 0 & 0 & 0 & 0 
+\end{bmatrix}
+\begin{matrix}
+\nu_{\pi,t} \\
+\nu_{y,t} \\
+\nu_{r,t} \\
+\nu_{i,t+1} \\
+\nu_{s,t+1} 
+\end{matrix}
+\end{equation}
+}
+The convention:
+\begin{equation}
+i^*_t = \varepsilon_{i,t}
+\end{equation}
+is adopted. Now, the observable vector-equation for this model is $Z_t = C S_t + D
+u_t$.
+\end{frame}
+
+\begin{frame} 
+ \frametitle{State-Space representation} 
+Furthermore, the following parameters auxiliaries are used to find:
+\newline
+\newline
+\textbf{Policy Reaction:} The following set of auxiliary parameters is defined.
+\begin{equation}
+F_1 = \frac{1}{(\chi-\theta)} \left (\frac{\gamma}{w} (\frac{1}{\rho_\pi} - 1) + \chi \right ) \Lambda \rho_\pi
+\end{equation}
+\begin{equation}
+F_2 = \frac{1}{(\chi-\theta)} p_{y,t}
+\end{equation}
+\begin{equation}
+F_3 = \frac{1}{(\chi-\theta)} \chi \rho_r
+\end{equation}
+\begin{equation}
+F_4 = -\frac{1}{(\chi-\theta)} \theta
+\end{equation}
+\begin{equation}
+F_5 = -\frac{1}{(\chi-\theta)} \theta
+\end{equation}
+\begin{equation}
+i_t = F_1 \varepsilon_{\pi,t-1} + F_2 \varepsilon_{y,t-1} + F_3 \varepsilon_{r,t-1} + F_4 \varepsilon_{i,t} + F_5 \varepsilon_{e,t}
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+\frametitle{State-Space representation} 
+\textbf{Phillips Curve:} From equation (29):
+\tiny
+\begin{equation}
+\pi_t = ((\Lambda \beta + 1) \rho_\pi - \frac{\gamma^2}{w} \Lambda) \varepsilon_{pi,t-1} + \gamma \chi (r_t^n - \rho_r r_{t-1}^n) + \gamma (\varepsilon_{y,t} - \rho_y \varepsilon_{y,t-1}) + (\varepsilon_{\pi,t} - \rho_\pi \varepsilon_{\pi,t-1})
+\end{equation}
+\normalsize
+The following auxiliaries are used:
+\begin{equation}
+G_1 = 1
+\end{equation}
+\begin{equation}
+G_2 = \Lambda (\beta - \frac{\gamma^2}{w})
+\end{equation}
+\begin{equation}
+G_3 = \gamma
+\end{equation}
+\begin{equation}
+G_4 = -\gamma \rho_y
+\end{equation}
+\begin{equation}
+G_5 = \gamma \chi
+\end{equation}
+\begin{equation}
+G_6 = -\gamma \chi \rho_r
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+\frametitle{State-Space representation} 
+\textbf{Output Gap:} From equation 26,
+\begin{equation}
+y_t = - \frac{\gamma}{w} \Lambda \varepsilon_{\pi,\tau-1} + \chi (r_t^n - \rho_r r_{t-1}^n ) + \varepsilon_{y,t} - \rho_y \varepsilon_{y,t-1}
+\end{equation}
+Define the following auxiliary variables: 
+\begin{equation}
+H_1 = -\frac{\gamma}{w} \Lambda
+\end{equation}
+\begin{equation}
+H_2 = 1
+\end{equation}
+\begin{equation}
+H_3 = -\rho_y
+\end{equation}
+\begin{equation}
+H_4 = \chi
+\end{equation}
+\begin{equation}
+H_5 = \chi \rho_r
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+\frametitle{State-Space representation} 
+\textbf{Nominal depreciation and final matrix form:} The final formal should look like:
+\begin{equation}
+Z_t = C S_t
+\end{equation}
+Equation (30) is helpful in this case. It can be written as a function
+of the exogenous processes that affect the policy instrument and the
+observable shocks that affect these equations directly:
+{\tiny
+\begin{equation}
+\begin{bmatrix}
+i_t \\
+\pi_t \\
+y_t \\
+E[\Delta s_{t+1}]
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & F_1 & 0 & F_2 & 0 & F_3 & F_4 & F_5 & 0 \\
+G_1 & G_2 & G_3 & G_4 & G_5 & G_6 & 0 & 0 & 0 \\
+0 & H_1 & H_2 & H_3 & H_4 & H_5 & 0 & 0 & 0 \\
+0 & F_1 & 0 & F_2 & 0 & F_3 & F_4-1 & F_5-1 & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{\pi,t} \\
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{y,t} \\
+\varepsilon_{\pi,t-1} \\
+r_t^n \\
+r_{t-1}^n \\
+i_t^* \\
+\varepsilon_{e,t} \\
+1 
+\end{bmatrix}.
+\end{equation}
+}
+\end{frame}
+
 \section{Optimal Bayesian Policy}
 \begin{frame} 
 \frametitle{Optimal Bayesian Policy} 
+From now on, the Central Banker will ignore whether data is generated by
+model A or B (that is, whether $\theta$ is positive or negative). Under such condition,
+the Central Banker will act in accordance to a model prior probability assigned to each
+model, and maximize expected utility.  
+\newline
+\newline
+\textbf{Knowledge assumptions:} Assume $\theta$ has an unknown value to both
+the Central Banker and agents within the model. 
+Central Bankers won't take into account the
+effect that their actions will have on their ability to learn.  
+Also, assume ``the common prior assumption": it is possible to represent any
+uncertain environment by some state space and a common prior probability
+distribution. Central Bankers and agents may have different information about
+the true state of the world, and thus different posterior beliefs, but those
+posteriors are derived by updating the common prior. Uncertainty is common
+knowledge.
 \end{frame}
 
+\begin{frame}
+\textbf{The Bayesian Central Bank's Problem:} Since the Banker is uncertain
+about the actual model driving the economy, he assigns a probability $p_t$ to
+model A and probability $1-p_t$ to model B. Such probabilities change according
+to a combination of model fit/unfit (trial and error) and their shocks, and an
+initial prior belief $p_o$.
+The expected loss function for period $t$ becomes:
+\begin{equation}
+L_(p_\tau)_\tau = p_\tau L_{\tau|A} + (1 - p_\tau) L_{\tau|B}
+\end{equation}
+for $L_{\tau|A} $ and $ L_{\tau|B}$ representing the value functions conditional
+on model A or B being the true model. This loss function is consistent with
+microeconomic expected utility theory. 
+\newline
+\newline
+The central bank problem without commitment under uncertainty is solved using a
+similar method than the model certainty case. The objective is to solve for the
+prior-conditional Lagrangian:
+\begin{equation}
+\mathcal{L}_\tau (p_\tau) = L_\tau (p_\tau) + \sum_{t=\tau}^\infty \lambda_t \beta^t E_t [(\pi_{t+1} + \gamma_y y_t + \varepsilon_\pi - \pi_t)|p_t]
+\end{equation}
+\end{frame}
 
-\section{Optimal Bayesian Policy}
+\begin{frame}
+The first order conditions with respect to $\{\pi_t\}^{\infty}_{t=\tau}$ and $\{y_t\}^{\infty}_{t=\tau}$
+are basically the same as in the case with model certainty, that is, equations (13) and
+(14), except for the fact that expectations take the prior in consideration.
+Agents expectations and the Central Banker' expectations on inflation regarding
+the prior are the same by assumption. Therefore, (15) becomes:
+\begin{equation}
+-\frac{\gamma}{w} E_t [\pi_t|p_t] = E_t [y_t|p_t].
+\end{equation}
+By applying the expectations operator conditional on the prior to the Phillips
+curve, equation (16) becomes:
+\begin{equation}
+\left (1 + \frac{\gamma}{w} \right ) E_t (\pi_t | p_t) = \beta E_t (\pi_{t+1} |p_t) + \rho_\pi \varepsilon_{\pi,t-1}
+\end{equation}
+Dealing with $E_t (\pi_{t+1} |p_t)$ is troublesome because it is a conditional
+expectation. The author takes a guess: a linear functional form in terms of the
+previous shocks:
+\begin{equation}
+E_\tau (\pi_t|p_t) = \Lambda^{BAY} \rho_\pi \varepsilon_{\pi,t-1}.
+\end{equation}
+Parameter $\Lambda^{BAY}$ needs to be determined. The solution is the same as in
+the case of model certainty:
+\end{frame}
+
+\begin{frame}
+\begin{equation}
+\Lambda^{BAY} = \frac{\rho_\pi}{1+\frac{\gamma^2}{w} - \beta \rho_\pi}
+\end{equation}
+\newline
+\newline
+Maybe this shows that regardless of model certainty or uncertainty, the Central
+Bank goal is the same.  He will try to maintain inflation as if he knew the true
+model, given what he knows. The difference will be the action he takes to
+achieve the goal.
+Because $\Lambda^{BAY} = \Lambda$, the law of motion for $\{E_{\tau}(\pi_t | p_t)\}^{\infty}_{t=\tau}$
+is the same as the case of model certainty:
+\begin{equation}
+E_t[\pi_t|p_t] = \Lambda^{BAY} \rho_\pi^{t+1-r} \varepsilon_{\pi,\tau-1}
+\end{equation}
+Using equation (11) we can obtain the expected path for output:
+\begin{equation}
+E_\tau[y_t] = -\frac{\gamma_y}{w} E_\tau [\pi_t].
+\end{equation}
+Taking the Bayesian expectation in the aggregate demand equation (11) and
+clearing out interest rate:
+\end{frame}
+
+\begin{frame}
+\begin{equation}
+i_\tau^{BAY} = \frac{1}{\Psi(p_t)} [E_\tau (y_{\tau+1} - y_\tau|p_t) + \chi E_\tau (\pi_{\tau+1}|p_t) + E_\tau (\mu_{y,\tau}|p_t)]
+\end{equation}
+where:
+\begin{equation}
+\Psi (p_t) = \chi - (p_t \theta^H + (1-p_t) \theta^L).
+\end{equation}
+Replacing the previous results, a similar result is found:
+\begin{equation}
+i_\tau^{BAY} = \frac{1}{\Psi(p_t)} \left [ \left ( \chi + \frac{\gamma_y}{w} ( \frac{1}{\rho_\pi} - 1) \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + E_\tau (\mu_{y,\tau}|p_t) \right ]
+\end{equation}
+When $\rho_\pi = 0$, 
+\begin{equation}
+i_t^{BAY} = \frac{1}{\Psi(p_t)} E_t[\mu_{y,t}|p_t].
+\end{equation}
+Given the data available at $\tau$, $E_t[\mu_{y,t}|p_t]$ can be computed by
+taking the weighted average of the shocks affecting the model. Summarizing
+results in a theorem, if we can call that a theorem,
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+ In the case of model uncertainty, assuming our knowledge assumptions, the
+ Central Banker has the following optimal Bayesian monetary policy without
+ commitment:
+\begin{equation}
+i_t^{BAY} (p_\tau) = \frac{1}{\Psi (p_\tau)} \left [ \left ( \chi_\pi + \frac{\gamma}{w} (\frac{1}{p_\pi} - 1 ) \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + E_\tau (\mu_{y,\tau}|p_\tau) \right ]
+\end{equation}
+where
+\begin{equation}
+\psi(p_\tau) = \chi - \left (p_t \theta^H + (1-p_t) \theta^L \right )
+\end{equation}
+and
+\begin{equation}
+\mu_{y,t} = \chi r_t^n - \theta i_t^* - \theta \varepsilon_{et} +
+\varepsilon_{y,t}.
+\end{equation}
+\end{theorem}
+\end{frame}
+
 \begin{frame} 
-\frametitle{Optimal Bayesian Policy} 
+\frametitle{State-Space representation} 
+The exogenous state vector equation is:
+\begin{equation}
+S_t = A(p_t) S_{t-1} + B w_t
+\end{equation}
+In matrix notation:
+\tiny{
+\begin{equation}
+\begin{bmatrix}
+\varepsilon_{\pi,t} \\
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{y,t} \\
+\varepsilon_{y,t-1} \\
+r_t^n \\
+r_{t-1}^n \\
+i_t^* \\
+\varepsilon_{e,t} \\
+1 \\
+\tilde{\varepsilon}_{y,t} \\
+\tilde{\varepsilon}_{y,t-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\rho_\pi & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \rho_y & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & \rho_r & 0 & 0 & 0 & r^n & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \rho_i & 0 & r^n & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \rho_e & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+J_1 & 0 & J_2 & 0 & J_3 & 0 & J_4 & J_5 & 0 & J_6 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{\pi,t-2} \\
+\varepsilon_{y,t-1} \\
+\varepsilon_{y,t-2} \\
+r_{t-1}^n \\
+r_{t-2}^n \\
+i_{t-1}^* \\
+\varepsilon_{e,t-1} \\
+1 \\
+\tilde{\varepsilon}_{y,t-1} \\
+\tilde{\varepsilon}_{t_t-2}
+\end{bmatrix}
++
+\begin{bmatrix}
+\sigma_\pi & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & \sigma_y & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \sigma_r & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \sigma_i & 0 \\
+0 & 0 & 0 & 0 & \sigma_e \\
+0 & 0 & 0 & 0 & 0 \\
+J_7 & 0 & 0 & J_8 & J_9 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\begin{matrix}
+\nu_{\pi,t} \\
+\nu_{y,t} \\
+\nu_{r,t} \\
+\nu_{i,t} \\
+\nu_{s,t} 
+\end{matrix}
+\end{equation}
+}
 \end{frame}
 
+\begin{frame} 
+\frametitle{State-Space representation}
+To get the endogenous state block, we can use equation (68)  that describes the
+optimal policy reaction function for model uncertainty, and replace the results
+in equation (11) for each model. Let $\theta^T$ be the true model and $\theta^F$
+the wrong mode:
+\begin{equation}
+y_t = \left ( \chi - \frac{\gamma}{w} \right ) \Lambda^{BAY} \rho_\pi \varepsilon_{\pi,t-1} - \left ( \chi - \theta^T \right ) i_t + \mu_{y,t}
+\end{equation}
+\begin{equation}
+\tilde{y}_t = \left (\chi - \frac{\gamma}{w} \right ) \Lambda^{BAY} \rho_\pi \varepsilon_{\pi,t-1} - \left ( \chi - \theta^F \right ) i_t + \tilde{\mu}_{y,t}
+\end{equation}
+Subtract both equations and equate LHS to 0:
+\begin{equation}
+\mu_{y,t} + \left ( \theta^T - \theta^F \right ) i_t - \tilde{\mu}_{y,t} = 0
+\end{equation}
+Replace both terms by their respective definitions:
+\begin{equation}
+\varepsilon_{y,t} + \left ( \theta^T - \theta^F \right ) i_t = \tilde{\varepsilon}_{y,t}
+\end{equation}
+which implies
+\begin{equation}
+\rho \varepsilon_{y,t-1} + \nu_{y,t} + \left ( \theta^T - \theta^F \right) i_t = \rho_y \tilde{\varepsilon}_{y,t-1} + \tilde{\nu}_{y,t}
+\end{equation}
+\end{frame}
+
+\begin{frame} 
+\frametitle{State-Space representation}
+$\varepsilon_{y,t}$ and $\tilde{\varepsilon}_{y,t}$ are state variables for the
+Central Bank, which implies $\tilde{\nu}_{y,t}$ is endogenous. To obtain an
+explicit solution, we use the linear form of the Central Bank's policy as a
+function of the innovations to the system.
+\newline
+\newline
+\textbf{Interest Rate:} The solution to the optimal policy is:
+\begin{equation}
+i_\tau^{BAY} = \frac{1}{\Psi (p_t)} \left [ \left ( \chi + \frac{\gamma_y}{w} ( \frac{1}{\rho_\pi} - 1) \right ) \Lambda \rho_\pi \varepsilon_{\tau-1} + E_\tau (\mu_{y,t}|p_t) \right ]
+\end{equation}
+Define the following auxiliary parameters:
+\begin{equation}
+F_1 (p_t) = \frac{1}{\Psi (p_t)} \left ( \frac{\gamma}{w} ( \frac{1}{\rho_\pi} - 1 ) - \chi \right ) \Lambda \rho_\pi
+\end{equation}
+\begin{equation}
+F_2 (p_t) = \frac{1}{\Psi (p_t)} (p_t) \rho_{y,t}
+\end{equation}
+\begin{equation}
+F_3 (p_t) = \frac{1}{\Psi (p_t)} \chi \rho_r
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+\begin{equation}
+F_4 (p_t) = -\frac{1}{\Psi (p_t)} \left (p_t \theta^T + (1-p_t) \theta^F \right )
+\end{equation}
+\begin{equation}
+F_5 (p_t) = -\frac{1}{\Psi (p_t)} \left (p_t \theta^T + (1-p_t) \theta^F \right )
+\end{equation}
+\begin{equation}
+F_6 (p_t) = \frac{1}{\Psi (p_t)} ( 1 - p_t) \rho_{y,t}
+\end{equation}
+and:
+\begin{equation}
+i_t = F_1 \varepsilon_{\pi,t-1} + F_2 \varepsilon_{y,t-1} + F_3 \varepsilon_{r,t-1} + F_4 \varepsilon_{i,t} + F_5 \varepsilon_{e,t} + F_6 \tilde{\varepsilon}_{y,t-1}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+We replace this in equation 79 to compute the value of $\{J_s\}^5_{s=1}$, by 
+regrouping terms to obtain the value of $\tilde{v}_{y,t}$,
+\small
+\begin{align}
+\tilde{v}_{y,t} &= \rho \varepsilon_{y,t-1} + v_{y,t} + \left ( \theta^T - \theta^F \right ) i_t - \rho_y \tilde{\varepsilon}_{y,t-1}  \\
+&= \left (\theta^T - \theta^F \right) F_1 \varepsilon_{\pi,t-1} + \left( \left( \theta^T - \theta^F \right ) F_2 + \rho \right ) \varepsilon_{y,t-1} + \left ( \theta^T - \theta^F \right ) F_3 \varepsilon_{r,t-1} \\
+&\qquad + \left (\theta^T - \theta^F \right ) F_4 \rho_i \varepsilon_{i,t-1} + \left (\theta^T - \theta^F \right ) F_5 \rho_e \varepsilon_{e,t-1} + \left( \left ( \theta^T - \theta^F \right ) F_6 - \rho_y \right ) \tilde{\varepsilon}_{y,t-1} \\
+&\qquad + v_{y,t} + \left (\theta^T - \theta^F \right ) F_4 \nu_{i,t} + \left (\theta^T - \theta^F \right ) F_5 \nu_{e,t}
+\end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+Summarizing:
+{\tiny
+\begin{equation}
+\tilde{\varepsilon}_{y,t} = J_1 \varepsilon_{\pi,t-1} + J_2 \varepsilon_{y,t-1} + J_3 \varepsilon_{r,t-1} + J_4 \varepsilon_{i,t-1} + J_5 \varepsilon_{e,t-1} + J_6 \tilde{\varepsilon}_{y,t-1} + J_7 v_{y,t} + J_8 \nu_{i,t} + J_8 \nu_{e,t}
+}
+\end{equation}
+\normalsize
+where the solution to:
+{\small
+\begin{equation}
+J_1 = \left ( \theta^T - \theta^F \right ) F_1
+\end{equation}
+\begin{equation}
+J_2 = \left (\left ( \theta^T - \theta^F \right ) F_2 + \rho_y \right )
+\end{equation}
+\begin{equation}
+J_3 = \left ( \theta^T - \theta^F \right ) F_3
+\end{equation}
+\begin{equation}
+J_4 = \left ( \theta^T - \theta^F \right ) F_4 \rho_i
+\end{equation}
+\begin{equation}
+J_5 = \left ( \theta^T - \theta^F \right ) F_5 \rho_e
+\end{equation}
+\begin{equation}
+J_6 = \left ( \theta^T - \theta^F \right ) F_6
+\end{equation}
+\begin{equation}
+J_7 = 1
+\end{equation}
+\begin{equation}
+J_8 = \left ( \theta^T - \theta^F \right ) F_4
+\end{equation}
+\begin{equation}
+J_9 = \left ( \theta^T - \theta^F \right ) F_5
+\end{equation}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+\textbf{Inflation Equation: }Using equation 29 to proceed in the same manner as
+in the case of certainty. The set $\{G_s\}_{s=\pi,y,r,i,e}$ remains the same.
+\newline
+\newline
+\textbf{Output Gap Equation: }From equation 28, we have:
+\begin{equation}
+y_t = \left ( \chi - \frac{\gamma}{w} \right ) \Lambda^{BAY} \rho_\pi \varepsilon_{\pi,t-1} - (\chi-\theta) i_t + \chi r_t^n - \theta i_t^* \theta \varepsilon_{et} + \varepsilon_{y,t}
+\end{equation}
+Using the following auxiliary variables:
+\small
+\begin{equation}
+H_1 (p_t) = \left ( \chi - \frac{\gamma}{w} \right ) \Lambda^{BAY} \rho_\pi - (\chi-\theta^T) F_1 (p_t)
+\end{equation}
+\begin{equation}
+H_2 (p_t) = 1
+\end{equation}
+\begin{equation}
+H_3 (p_t) = - (\chi-\theta^T) F_2 (p_t)
+\end{equation}
+\begin{equation}
+H_4 (p_t) = \chi
+\end{equation}
+\begin{equation}
+H_5 (p_t) = - (\chi - \theta^T) F_3
+\end{equation}
+\begin{equation}
+H_6 (p_t) = -\theta^T - (\chi - \theta^T) F_4
+\end{equation}
+\begin{equation}
+H_7 (p_t) = -\theta^T - (\chi - \theta^T) F_5
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+\begin{equation}
+H_8 (p_t) = - (\chi - \theta^T) F_6
+\end{equation}
+\newline
+\newline
+\textbf{Nominal Depreciation and Matrix form: } Remains the same. The system
+takes the form:
+\begin{equation}
+Z_t = C (p_t) S_t
+\end{equation}
+The main difference is in the appearance of parameter $p_t$. Summarizing:
+\tiny
+\begin{equation}
+\begin{bmatrix}
+i_t \\
+\pi_t \\ 
+y_t \\
+E_[\Delta s_{t+1}]
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & F_1 & 0 & F_2 & 0 & F_3 & F_4 & F_5 & 0 & 0 & F_6 \\
+G_1 & G_2 & G_3 & G_4 & G_5 & G_6 & 0 & 0 & 0 & 0 & 0 \\
+0 & H_1 & H_2 & H_3 & H_4 & H_5 & H_6 & H_7 & 0 & 0 & H_8 \\
+0 & F_1 & 0 & F_2 & 0 & F_3 & F_4-1 & F_5-1 & 0 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{\pi,t} \\
+\varepsilon_{\pi,t-1} \\
+\varepsilon_{y,t} \\
+\varepsilon_{y,t-1} \\
+r_t^n \\
+r_{t-1}^n \\
+i_t^* \\
+\varepsilon_{e,t} \\
+1 \\
+\tilde{\varepsilon}_{y,t} \\
+\tilde{\varepsilon}_{y,t-1}
+\end{bmatrix}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+\textbf{Conditional Moments and Loss Functions}
+Unconditional moments can be obtained via numerical simulations of the above
+system. Conditional moments can be obtained analytically using the matrix forms.
+The summarized system is:
+\begin{equation}
+S_t = A (p_t) S_{t-1} + B w_t
+\end{equation}
+\begin{equation}
+Z_t = C(p_t) S_t
+\end{equation}
+Bayes's updating rule is:
+\begin{equation}
+p_{t+1} = \frac{p_t P(Data_t|Data_{t-1},M^A)}{p_t P(Data_t|Data_{t-1},M^A) + (1-p_t) P(Data_t|Data_{t-1},M^B) }
+\end{equation}
+By Cogley et al. (2005), we know that $p_{t+1}$ is a martingale. Conditional on
+the true model, $p_{t+1}$ is either a super-martingale or a sub-martingale,
+depending on which is the true model.
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation}
+\textbf{Moments Conditional on the True Model and State} To get the first
+moments, recall that conditional expectations over the exogenous states are:
+\begin{equation}
+E_t [S_{t+1}|S_t,p_{t+1}] = A(p_{t+1} S_t
+\end{equation}
+Substituting this into the observable yields:
+\begin{equation}
+E_t [Z_{t+1} | S_t,p_{t+1} ] = C (p_{t+1}) [A(p_{t+1})] S_t
+\end{equation}
+, where (for simplicity):
+\begin{equation}
+M (p_{t+1}) = C (p_{t+1}) [A (p_{t+1})]
+\end{equation}
+To obtain second moments, recall the equivalence:
+\begin{equation}
+S_{t+1} = A (p_{t+1}) S_t + B w_{t+1}
+\end{equation}
+and therefore:
+\begin{equation}
+Z_{t+1} = C (p_{t+1}) [A(p_{t+1}) S_t + B w_{t+1}]
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation} 
+The loss at period $t+1$ is:
+\begin{equation}
+Z'_{t+1} W Z_{t+1}
+\end{equation}
+where
+\begin{equation}
+\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & w & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation}
+Substituting in the components of $Z_{t+1}$,
+\begin{equation}
+[A ( p_{t+1}) S_t + B w_{t+1}]' C(p_{t+1})' W C (p_{t+1}) [A(p_{t+1}) S_t + B w_{t+1}]
+\end{equation}
+Taking expectations and defining it as a value $V$:
+\small
+\begin{equation}
+V(S_t, p_{t+1}) = S'_t M (p_{t+1})' W M (p_{t+1}) S_t + E \left [w'_{t+1} B' C (p_{t+1})' W C (p_{t+1}) B w'_{t+1} \right ]
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{State-Space representation} 
+To get value conditional on true model, use $p_{t+1}$ to refer to the
+probability of the event that $A$ is the true model, given by:
+\tiny
+\begin{equation}
+L_{t|A} (S_t,p_{t+1}) = V(S_t,p_{t+1}|A) + \beta E \left [(p_{t+1}) L_{t+1|A} (S_{t+1},p_{t+2}) + (1-p_{t+1}) L_{t+1|B} (S_{t+1},p_{t+2})|A \right ]
+\end{equation}
+\small and
+\tiny
+\begin{equation}
+L_{t|B} (S_t,p_{t+1}) = V(S_t,p_{t+1}|B) + \beta E \left [(p_{t+1}) L_{t+1|A} (S_{t+1},p_{t+2}) + (1-p_{t+1}) L_{t+1|B} (S_{t+1},p_{t+2})|B \right ]
+\end{equation}
+\small
+Standard methods of computation of value functions allow to obtain both value
+functions.
+\end{frame}
+
+\begin{frame}
+Recall:
+\begin{theorem}
+ In the case of model uncertainty, assuming our knowledge assumptions, the
+ Central Banker has the following optimal Bayesian monetary policy without
+ commitment:
+\begin{equation}
+i_t^{BAY} (p_\tau) = \frac{1}{\Psi (p_\tau)} \left [ \left ( \chi_\pi + \frac{\gamma}{w} (\frac{1}{p_\pi} - 1 ) \right ) \Lambda \rho_\pi \varepsilon_{\pi,\tau-1} + E_\tau (\mu_{y,\tau}|p_\tau) \right ]
+\end{equation}
+where
+\begin{equation}
+\psi(p_\tau) = \chi - \left (p_t \theta^H + (1-p_t) \theta^L \right )
+\end{equation}
+and
+\begin{equation}
+\mu_{y,t} = \chi r_t^n - \theta i_t^* - \theta \varepsilon_{et} +
+\varepsilon_{y,t}.
+\end{equation}
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\begin{enumerate} 
+\item The optimal policy reacts to all of the shocks to the model by weighting
+effects into the loss function.
+\item Reaction to shocks depend on the sign of $\psi(p_\tau)$, which depends on
+the prior.
+\item Computing optimal policies require computing the demand shocks for both
+model.
+\item The update of model A probability in the Bayesian approach depends on
+Bayes odd's ratio:
+\end{enumerate}
+\begin{equation}
+p_t = P (M^A | Data) = \frac{P(Data|M^A) P(M^A)}{P(Data|M^B) P(M^B) + P(Data|M^A) P(M^A)}
+\end{equation}
+This ratio shows that the probability of choosing a given model as true will
+depend on a weighted average of the likelihood of the data at period $t$, conditional to each model and data. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Calibration: } Designed so that the textbook model and balance sheet
+model indicate the policy maker react to financial shocks in opposite
+directions.
+\newline
+\newline
+Canada is chosen as benchmark small open economy for model A. Calibration of
+$\theta_A$ and the variance of the process was carried out to match the
+HPS-statistic of Canada and volatility of devaluations and interest rates. To
+parameterize model B, $\theta_A$  is chosen to match the HPS-statistic of Peru,
+an example of a fear of floating economy.
+\end{frame}
+
+\begin{frame}
+\includegraphics[width=0.99\textwidth]{001.pdf}
+\end{frame}
+
+\begin{frame}
+\includegraphics[width=0.99\textwidth]{002.pdf}
+\end{frame}
+
+\begin{frame}
+\includegraphics[width=0.99\textwidth]{003.pdf}
+\end{frame}
 
 \section{Robust Policy}
 \begin{frame} 
 \frametitle{Robust Policy} 
+Assume that the Central Bank has a fear of misspecication of his prior probabilities and
+hence, optimizes not in accordance to multiplier preferences instead of expected utility
+theory. Central Banks can fear that their updating rules are misspecified and
+don't fully trust Bayes rule.
+\newline
+\newline
+By using robust policies, the Central Banker will use Bayes rule as a pivotal
+mechanism to asses risks, but will minimize loss for a set of priors close to the one
+computed by data and Bayes rule. The robust Central Banker problem is
+\scriptsize
+\begin{equation}
+L(p_\tau)_\tau = \min_{\bar{p}_\tau} \max_{i_t} \left \{ \bar{p}_\tau \left [ - L_{\bar{p}_\tau|,A} + \Theta \log \left ( \frac{\bar{p}_\tau}{p_\tau} \right ) \right ] + (1 - \bar{p}_\tau) \left [- L_{\bar{p}_\tau|B} + \Theta \log \left ( \frac{1 - \bar{p}_\tau}{1 - p_\tau} \right ) \right ] \right \}
+\end{equation}
+\normalsize
+where $\Theta$ is the parameter that characterizes robust preferences. The
+higher this parameter, the more the Central Bank will trust its prior.
 \end{frame}
 
+\begin{frame} 
+\frametitle{Robust Policy} 
+where $p_{\tau}$ is the usual prior probability. The Central Banker acts like
+there is a bad agent trying to distort the prior probabilities assigned to each
+model. He is not entirely free as is constrained by $\Theta$.  High values of $\Theta$
+allow the evil lower distortions. The game is played simultaneously, and the
+minimizing agent will take sequences $\{i_t\}$ of policy decisions to
+minimize the Welfare function. The FOC (sufficient) is:
+\begin{equation}
+\left [ -L_{\bar{p}_\tau|,A} + \Theta \log \left ( \frac{\bar{p}_\tau}{p_\tau} \right ) \right ] - \left [ -L_{\bar{p}_\tau|B} + \Theta \log \left ( \frac{1-\bar{p}_\tau}{1-p_\tau} \right ) \right] + \Theta = 0
+\end{equation}
+Regrouping, this yields:
+\begin{equation}
+\left ( \frac{\bar{p}_\tau}{1-\bar{p}_\tau} \right ) = \left ( \frac{p_\tau}{1-p_\tau} \right ) \exp \left [ \frac{L_{\bar{p}_\tau|,A} - L_{\bar{p}_\tau|B} }{\Theta} \right ]
+\end{equation}
+If the loss originated from model A is bigger than the loss caused
+by model B, the Central Banker will act according to $\bar{p}_{\tau} > p_{\tau}$.
+\end{frame}
 
 \section{Model Dynamics and Learning}
 \begin{frame} 
-\frametitle{Effects of increase in rate of monetary expansion} 
-\includegraphics[width=0.85\textwidth]{phase5.pdf}
+Speed of convergence of the prior probability departing from initial values for the prior and the model:
+\includegraphics[width=0.99\textwidth]{004.pdf}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Final Remarks} 
-
+%\begin{quote} 
+When the true model is A, beginning from a prior of 10 per cent the
+expected waited time for converging to a prior probability of 90 per cent is slightly above
+5 years, roughly, the time interval of each of our cross-country sub-samples. 
+%\end{quote}
+\newline
+\textbf{Learning Under Robust Policies} Replication when robust policies are
+implemented, based on a value $\Theta = 2$.
 \end{frame} 
+
+\begin{frame} 
+Speed of convergence of the prior probability departing from initial values for the prior and the model:
+\includegraphics[width=0.99\textwidth]{006.pdf}
+\end{frame}
+
 \end{document}
