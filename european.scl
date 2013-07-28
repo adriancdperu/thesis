@@ -1,0 +1,29 @@
+clear; 
+//
+So=100;
+sig=0.2;
+K=99;
+r=0.04;
+T=1;
+N=250;
+
+dt=T/N;
+//risk neutral probability
+u=exp(sig*sqrt(dt));
+d=1/u;
+q=(exp(r*dt)-d)/(u-d);
+
+//base
+price=zeros(N+1,1);
+for i=1:N+1
+    Si=So*d^(N-(i-1))*u^(i-1);
+    price(i)=max(0,Si-K);
+end
+
+//backward
+for n=N:-1:1
+    for j=1:n
+        price(j)=exp(-r*dt)*(q*price(j+1)+(1-q)*price(j));
+    end
+end
+price(1)
