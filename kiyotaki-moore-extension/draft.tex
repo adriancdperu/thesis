@@ -1,0 +1,540 @@
+\documentclass[12pt]{article}%
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage[singlespacing]{setspace}
+\usepackage[bottom]{footmisc}
+%\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{graphicx}%
+\usepackage{rotating}
+\usepackage{tabularx}
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\makeatletter
+%\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1in,right=1in,top=1.00in,bottom=1.0in}
+\begin{document}
+
+\title{Liquidity Crisis in Bonds and Equities Markets\thanks{Work in progress. Comments are kindly welcomed.}}
+\author{Adrian Campos\thanks{E-mail: \textit{adrian@investometrica.com}}}
+
+\maketitle
+
+\sloppy%
+
+\onehalfspacing
+
+\textbf{Abstract:}
+As a continuos extension of Kiyotaki \& Moore (Kiyotaki and Moore, 2012), this paper
+introduces a simple monetary economy with investors and workers. Investors are
+randomly provided with a compelling opportunity to actively invest at a given period, and
+become entrepreneurs. The remaining passive investors can keep fiat money or choose
+to invest in equities issued by previous entrepreneurs, their own equity or 
+sovereign bonds issued by the local authority. In this context, we study the
+effect of an exogenous change in the liquidity of our model's main assets: equities and bonds. 
+The first part of our essay reviews the literature. The second part introduces our model, equilibria
+conditions, steady states and dynamic path. The third part is a study of liquidity crisis.
+We conclude the essay with a numerical analysis.
+\strut
+
+\textbf{Keywords:} Macroeconomics, Finance.
+
+\strut
+\textbf{JEL classification:} E44, E50.
+
+\strut
+%\textbf{JEL Classification Numbers:} J13, O47, O54.
+\pagebreak%
+\nocite{jimenez,so,galor2010,carranzapipi,angus11,dell,tepaske,livi,wawa,INEI6,ruralperu,goo,cook1,liao,diebolt,toda,braun,bauer,guinnane,UN1,latinfertil,luis2,INEI1,INEI2,INEI3,INEI4,INEI5,shi1,
+lee1,lord,razin,tour1,tilak,chase,colombia,nicolini,galor2000,galor2005,doepke2005,INEI8,
+tour2,day,chen,fertilitypalivos,palivos2,yip,doepke,galor,barro2,barro1,wang-theoryandevidence,tamura2,
+becker1,barro3,barro4,k1,s1,s2,s3,s4,s5,s6,lehmijoki,ahituv,barrobecker2,barrobecker1,dobyns,ww,huenefeld,contreras2010}
+\section{Introduction}
+There is quite an amount of evidence, both at empirical and theoretical levels, supporting the existence of a negative worldwide relation between fertility rates and economy growth, at least during the period after the Industrial Revolution.\footnote{However, world data from the period prior to 1800 supports a Malthusian hypothesis (Palivos and Scotese, 1996; Galor and Weil, 2000; Galor, 2005). To explain this, Kuznets(1960) and Simon (1981) emphasized the long-run benefits of population growth, since a bigger population would also carry with itself certain positive externalities, like a bigger ``pool of ideas". However, although data might be coherent with the Malthusian hypothesis for at least the period before the Demographic Transition (circa 1700), there remains serious doubts on the aggregate effect of both positive and negative externalities on a certain economy. Galor and Weil (2000) provide a better economic explanation, which we shall use in this paper.} As in 2010, the average GDP per capita and fertility rates of the least developed countries in the world were respectively \$404 (measured in constant 2000 US Dollars) and 4.31 births per woman, while countries with the highest income in the world experienced respectively \$27,370 and 1.74 births\cite{WorldBank1}.\footnote{Note that this is far beyond the appproximate replacement fertility rate for countries with low mortality levels (2.1 births per woman).}
+
+At a cross-sectional level, various empirical studies on growth performance have confirmed the negative nature of the relation; for general studies see Mankiw et al. (1992), and Barro (1991, 1992). For example: using a census-survey data from the United Nations and other sources, Barro and Lee (1993) construct a panel data set on educational attainment for 73 countries at five-year intervals from 1960 to 1985, and provide evidence of a negative effect of human capital on fertility, which combined with the positive effect of human capital on physical investment can explain why countries that start with a higher level of educational attainment can grow faster for a given level of GDP per capita\footnote{The estimates in the early paper were updated recently, including new population groups and projections for year 2000, see\cite{barro4}. }. Several theoretical frameworks have also been constructed to understand the channels of interaction between these two variables. Amongst them, models with endogenous fertility and economic growth have illustrated the importance of human capital in explaining the previous relation, with significative success. Despite the diversity in their assumptions, these models seem to fit relatively well the empirical evidence for years after the first Industrial Revolution.\footnote{Models based solely on Becker et al.(1960, 1989) might generate certain testable predictions inconsistent with evidence for years prior to the demographic transition (Galor, 2010).} The literature has recently been complemented with models that aim at taking a historical perspective (concerning periods well before the Industrial Revolution, which presented almost constant living standards) of the relation between fertility, population growth, technology and output; this is an approach known as Unified Growth Theory (Galor and Weil, 2000; Galor, 2005; Doepke, 2005).
+
+Within-country empirical studies are also abundant, with evidence from either developing economies facing high -and in some cases, growing fertility rates-, data from aging economies, or from transition economies (Maksymenko, 2009). On the other hand, empirical panel data studies including a large set of countries have proposed to identify both the magnitude and the structure of the relation between economic growth and fertility. However, to our knowledge, few empirical studies have been carried out using Peruvian macrodata\footnote{There are many statistic reports on demographic issues, which are being wreleased periodically by the National Institute of Statistics and Informatics. There is also an interesting paper by Angeles et al. analyzing the determinants of fertility in rural Peru.}. There are several studies carried out from an either historical or purely demographic perspective. We consider there is a need to revisit the relation between fertility and economic growth using recently estimated data -which was not available before- under a Unified Growth Theory framework to capture the long run behavior of these variables. Thus, the main goal of this paper is to carry out an empirical study on the long and short run dynamics between fertility and economic growth using data from Peru, as an example of an upper middle income emerging market economy experiencing high economic growth rates and decreasing fertility rate as recent trends, but still facing various poverty traps. Our focus is mainly on the dynamics of the relation, rather than its structure or causation. To do so, we will base our analysis in recent models of endogenous growth and fertility, and we will rely on a vector autoregressive approach (VAR).
+
+For the long run, we use various sources to plot the population (1500-2050, 1700-2010) and macroeconomic trends (1700-2010), in order to identify the start up of the demographic transition and growth takeoffs. Theoretically, we explain the total period using a simplified version of Galor and Weil (2000), created by Doepke (2005). We observe that the long run evolution of population in Peru has particular features, which probably arised from a vast decrease in population (a process known as Demographic Collapse) between 1520 and 1620. Such a collapse might have postponed the onset of the Demographic Transition, which eventually set in circa 1960. Empirically,  we employ multivariate autoregressive vectors to analyze how accurately these models fit reality. We analyze endogenously the dynamics between fertility and growth disturbances for the period 1960-2008 and 2005-2008. The choice of a VAR Model responds to the necessity of investigating the dynamic impact of changes in one variable on the others in the vector by means of analyzing impulse response functions. We find that despite some particular features of Peruvian population history evolution, a unified growth theory approach can explain the long run relation between fertility, growth and technology with some success.
+
+This paper is organized as follows: the next section surveys the existent empirical and theoretical literature regarding the relation between fertility and economic growth. Section 3 presents stylized facts for the periods known as Demographic Collapse, Malthusian Regime, Post-Malthusian Period and Demographic Transition to Sustainable Growth (or Modern Growth Regime); with a particular emphasis on the latter, due to its similar timing with the Demographic Transition. Section 4 presents the theoretical approach we will use in this paper. Section 5 presents estimates and results of the empirical study (impulse response functions, variance decomposition, Granger Causality tests, etc). Robustness checks and sensitivity analysis are carried out in Section 6. Concluding remarks are offered in Section 7.
+\section{Literature Review}
+More than two hundred years ago, Malthus noticed in his famous \emph{An Essay on the Principle of Population} that both population and economic growth are to be in equilibrium\footnote{To Malthus, equilibrium was achieved by means of wages. An increase in population growth would cause depressed wages, which in turn would lead to either famine and misery (\emph{Positive Malthusian check}) or postponement of marriage and vices (\emph{Preventive Malthusian check}).}. To Malthus, a great difference between population and economic growth \emph{could only end in vice and misery} (Lee, 2003). Ironically, soon after the publication of his ideas, Europe's demographic and economic behaviour started to exhibit features inconsistent with his model, like simultaneous high rates of fertility and income per capita. Notwithstanding, his was to be one of the first and most important formal models for dynamic population growth.
+\subsection{Empirical Research}
+Although the issue of whether slow population growth observed in Europe before the Demographic Transition was caused by Malthusian forces still remains in question to some, further research has been able to confirm various paths of time evolution for population and economic growth; which differ in assumptions, parameters and the period of analysis. Classifying by economic clusters, i.e. whether the economy in question is either a least, developing or developed  economy\footnote{Interestingly, over long time periods, demographic paths between countries differ mainly in the timing of inflection points occurrence and not in the overall trend. While in 1950 the difference in fertility rates between the least and the more developed groups was of more than three points, by 2040 the difference is expected to be of at most one point (United Nations, 2003).}, could be one of many ways of organizing the literature. Since it seems that in the very long run there are worldwide tendencies towards convergence in demographic trends; we will classify only recent studies (since within-country empirical studies are considerably abundant) by the country where data was taken from and not by the time period chosen for the analysis. To our knowledge, leaving aside an interesting study of the fertility determinants in rural Peru (Angeles et al, 2005) and official reports by the National Institute of Statistics and Informatics, no empirical study on the relation between fertility and economic growth has been carried out for Peru, at least in recent years.
+
+Tables 1 and 2 are brief reviews of what we consider recent relevant within-country empirical research on the relation between fertility and economic growth for representative developed (Table 1) and non-developed countries\footnote{ We include``developing" and ``less developed" examples in the same table.} (Table 2), respectively. Next to the country name we have added (in parenthesis) estimates for the total fertility rate (births per woman) for year 2009 (Source: World Bank, 2011). Though several are the research methods employed and each study considers a specific country, it can be seen that the relation between fertility and economic growth presents reverse causality. The complexity of such a relation suggests the employment of econometric tools which can analyze both factors endogenously, like the VAR approach.
+\begin{table}[h] \begin{center}
+\begin{tabularx}{\linewidth}{lX}
+Country & \\
+\hline
+Germany (\emph{1.4}) & Guinnane (2008) focused on the period 1800-1900 and found that industrialization in the
+nineteenth century promoted rapid population growth.\\
+Japan (\emph{1.3-1.4})& Several studies exist. Using microdata from the period
+1985-2004, a recent paper by Toda (2007) found that improvements in the employment environment can raise fertility rates. Using a computable dynamic OLG model,
+Braun et al. (2006) found that combined effects of demographics and slower total factor productivity growth successfully
+explain both the levels and magnitudes of the declines in the saving rate during the 1990's. \\
+Taiwan (\emph{0.9}) & Liao (2011) constructs a general equilibrium overlapping generations model with endogenous
+fertility. When calibrated for Taiwan, results suggest that more than one-third of the output growth in Taiwan during the
+past four decades can be attributed to the demographic transition.\\
+United States (\emph{2.1}) & Although not an empirical study, Lord and Rangazas (2006) developed a simple
+overlapping-generations model extended to include schooling, fertility, and family production. When calibrated to data
+from the United States over the period 1800-200, they found that technologically driven decline in family production was
+an important contributor to the decline in fertility in the 19th century, whereas the rise of schooling of older children
+was the main contributor for the decline in the 20th century. The surprisingly good fit between simulation results and
+historical data indicates that industrialization has very likely had direct negative effects on fertility.\\
+United Kingdom (\emph{2.0}) & When the previous model was calibrated to data from England over the period 1740-1940,
+simulation results showed that the rise in fertility from 1820-1940 was probably caused by both an expansion in the
+cottage industry and a rise in the relative productivity of children. Notably, as in Doepke (2004), compulsory schooling
+and child labor laws (i.e. human capital incentives) are needed to explain the accelerated fertility decline after
+1820.\\
+France (\emph{2.0}) & Diebolt and Doliger (2008) explain the importance of the ``youngest cohort", and thus fertility
+rate, for the economic dynamics of France after the Second World War.\\
+\end{tabularx}
+\end{center}
+\caption{Within-country studies: Developed Economies}
+\label{tab:}
+\end{table}
+
+\begin{table}[h] \begin{center}
+\begin{tabularx}{\linewidth}{lX}
+Country & \\
+\hline
+China (\emph{1.6}) & Abeysinghe and Jiaying (2009) recently re-analyzed the relation between fertility and economic growth. Under a GMM-SYS approach on dynamic panel regressions based on five-year averages, it is shown that there is a strong negative relationship running both ways. Casuality, though, would run from birth rates to growth. Growth effects on fertility were small at a provincial level: a one unit fall in the birth rate has increased China's steady-state per capita income by nine percent.\\
+Slovakia (\emph{1.4}) & Estimates from a dynamic stock adjustment model using micro-data from 1984-1993 relate observed drops in post-Communism fertility to new wages and prices. Families that already had some children chose not to have more in the transition period, due to uncertainty. Finally, and as predicted by Galor and Weil (1996), they found that women whose earnings increased the most became the least likely to have children during the transition (Chase, 1998).  \\
+Czech Republic (\emph{1.5}) & Interestingly, Chase produced evidence that differences in earnings had a positive effect on fertility timing (the opposite effect was observed in Slovakia). \\
+Uganda (\emph{6.2}) & Using a sample of 910 respondents from rural areas in Uganda, Bauer et al (2006) found that fear of diseases and involvement in certain clan institutions (the custom of keeping fertility higher than mortality to ensure the clan perpetuity) increased the desired number of children. These effects could be reduced throughout education (\emph{``Average desired number of children decreases from 9.5 to 6.5 at primary school and further to 4.1 at secondary school."}). The effect of economic contributions from children on ``desired number of children" was not statistically significant.\\
+India (\emph{2.7}) & Brookins and Brookins (2002) carried out a stationary analysis using a National 1991 Census. Economic variables explain 70\% of the interstate fertility rates variation. Foster and Rosenzweig (2006) found that the aggregate increase in wages, the increase in agricultural productivity and a better access to health facilities explain the decline in TFR in 39\%, 80\% and 3.4\% respectively, for the period 1982-1999. \\
+Colombia (\emph{2.4}) & Mej\'ia et al (2008) used VAR, VEC and cointegration properties, concluding that in the period
+1955-2005, exogenous increases in income per capita produced positive responses in human capital and close to zero negative responses on fertility, a result consistent with Galor and Weil (2000).\\
+Argentina (\emph{2.2}) & Delajara and Nicolini (2000) used a VAR with birth, death, marriage rates, real wages and income to compare two regions (Buenos Aires and Tucum\'an, where the latter is less developed) for 1914-1970. Malthusian preventive checks were stronger in Buenos Aires.
+\\ \end{tabularx}
+\end{center}
+\caption{Within-country studies: Non-developed Economies}
+\label{tab:}
+\end{table}
+Before closing this sub-section, three relevant \emph{global} studies are worth mentioning. The first one is a famous cross-section study developed by Barro (1991, 1992)\footnote{See \cite{barro2}.}. Barro uses a cross section of 98 countries (including Peru) from 1960 to 1985 in an attempt to analyze the convergence hypothesis\footnote{The Solow-Swan Model of exogenous growth predicts that a country's per capita growth rate tends to be inversely related to its initial level of income per capita. Under usual assumptions and denoting \emph{k*} as the steady state level of K per capita, if every country has the same \emph{k*}, then a country with smaller \emph{k} shall experience a higher growth rate.}. Before this paper, the convergence hypothesis seemed to fit only data for developed economies while it was inconsistent with data from developing countries (sub-Saharan Africa and Latin America). The estimation strategy of Barro was to hold constant measures of not only initial physical capital but also initial human capital (taking school-enrollment rates as its proxy). Under the new strategy, he found statistically significant evidence that countries with lower product per capita would tend to grow faster. He also observed that countries with higher levels of human capital also experienced lower fertility rates and higher ratios of physical investment to GDP. Poor countries would only tend to catch up with rich countries if they had sufficiently high human capital per capita. Likewise, countries with higher human capital have low fertility rates and high ratios of physical investment. Thus, a higher fertility rate would lower the speed of convergence. The channel for this mechanism is human capital. However, Barro does not assess the effects of omitted variables. The direct effect of fertility on economic growth remained statistically insignificant.
+
+The second study set out to fill this gap. Ahituv (2001) found that a 1\% decrease in population growth increases world GDP per capita by more than 3\%, using more countries and data points than Barro, and adding robust estimation methods that control unobserved components. Ahituv used a structural model to quantify the contributions of the capital dilution effect (``K has to be spread more thinly over L") and the children-dependency effect (cost of raising children, since ``parents spend time taking care of their children and time is money") provoked by an out-of-the-steady-state increase in fertility to per capita capital growth, and found that the latter is the main demographic factor keeping countries with high fertility rates poor. Ahituv fails to find proper instrumental variables in order to identify and quantify the causality effect between fertility and economic growth.
+
+Finally, a more recent study by Adsera and Men\'endez (2009) conducted a macrodata analysis to estimate the changes in total fertility rate and age-specific fertility rates around a common trend over 18 Latin American countries for 25 years. They found evidence that periods of relative high unemployment are associated with lower fertility and relative postponement of maternity.  An increase of one standard deviation (4.29\%) in unemployment rates would reduce fertility by 0.6 percent. The paper does not identify -nor quantify- in what specific ways changes in unemployment and fertility might be related (like wage effects, income ffects or negative effects in marriage market).
+\subsection{Theoretical Research}
+\textbf{The beginning:} Theoretical literature on fertility, population growth and economic growth is considerably vast and long-standing. Attempts to endogenize population growth in an economic growth model were present in the literature soon after the publication of the Solow Model circa 1950, which treated population growth as an exogenous parameter. Becker was a pioneer in the field, starting to model fertility as early as 1960. In 1974, together with Lewis (Becker and Lewis, 1974), he analyzed the income and price effects of an increase in money income on the demand for number and quality of children. He concluded that the cost of an additional child becomes greater, the higher the quality is\footnote{Holding quality constant.}. Shortly after, Razin and Zion (1975) used the static early framework of Becker and Lewis to construct the first overlapping generations model of population growth. Their work assumed that the utility of each generation is a function of the level of its consumption, the number and the utility of the newly born people.
+
+The economic study of fertility choice changed enormously after a seminal work by Becker and Barro (1989) constructed a model combining both a neoclassical production function and fertility choices based on a few consistent assumptions like parental altruism. This paper, an extension of the Ramsey Model, did not need the unrealistic assumption of Razin and Zion (1975) that the number of children and utility per child are separable in parent's preferences\footnote{In Barro-Becker (1989), associated with each parental utility function is a dynastic utility function depending on the number of children and the consumption of each child in all generations; an assumption far more realistic than the one in Razin and Zion (1975).}, offered dynamic and comparative statics, and determined population growth through endogenous fertility decisions.
+\begin{figure}[h]
+\caption{Reverse causality between fertility and economic growth}
+\centering
+\includegraphics[width=0.79 \textwidth]{newsqueme.pdf}
+\label{tfrandle}
+\end{figure}
+Several extensions and new models have appeared since then. Most of their differences are derived from how children enter into parental utility. The assumption that parents are altuistic led to Beckerian Models of fertility choice. Becker, Murphy et al. (1990) extended the basic framework to include human capital. The Beckerian framework has also been extended to include dynamic interactions between labor-leisure and fertility choice (Wang et al., 1991); discrete fertility choice and stochastic mortality (Doepke, 2004); birth limits and taxes (Shi and Zhang, 2008); pollution (Lehmijoki and Palokangas, 2009); money holdings (Petrucci, 2003); social status concerns (Tournemaine and Tsoukis, 2008); etc.
+
+A representative of models with self-interested parents that view children as a consumption item is Galor and Weil (1996). In this model, the relative wage rise of women produced by economic growth has two effects: higher wages make children more affordable than before, but also more costly due to higher opportunity costs. Day (2004) extended this model introducing goods and services as a child rearing input.
+
+We have informally aggregated the various possible mechanisms that the theoretical and empirical literature suggest for linking fertility to economic growth in Figure 1. Arrows are labeled as either positive or negative, depending on the sign of the most-likely (according to the literature) correlation. The graph is to be viewed only as a very rough summary, since relations between these variables are too complex to be conceptualized so simply. The reader might refer to Tamura (2000) for an illustrative formal survey on models with endogenous growth and fertility.
+
+\textbf{The Unified Growth Theory view:} Before closing this section, one last and somewhat recent theoretical approach needs to be mentioned. Most of the models above offer a good explanation of the relation between population and economic growth, as long as they are used to explain periods known as \emph{Post-Malthusian}: periods characterized by steady growth in income and level of technology, where a negative relation between the level of output per capita and growth rate of population is observed. Since history shows that for the most part, mankind did not experience either significant economic growth or population growth (\emph{Malthusian Regime}), as compared to recent levels (Lee, 2003; Galor and Weil, 2000), and both high income and fertility rates once coexisted in every country (Africa is an example where this positive relation is still valid), it is important to adopt a long run perspective in the study of population, technology and growth. Unified growth models aim at capturing the historical evolution of population, technology and output, usually employing long periods of study that include both Malthusian regimes and Modern Growth Regimes (Galor and Weil, 2000; Galor, 2005; Doepke, 2005). Under this framework, the key event that separates Malthusian and Post Malthusian Regimes is the acceleration in the pace of technological progress, for which we will show evidence using Peruvian data in our next section. Because such models englobe most of the mechanisms suggested by the literature (endogenous technological progress depending on population size and educational levels, fertility choice depending on a quality-quantity tradeoff and a subsistence consumption constraint, human capital and land) we shall rely on a simplified version (Doepke, 2005; Mej\'ia et al., 2008) in Section 4.
+\section{Stylized facts}
+Viewed on a very long time scale, positive world economic and population growth are recent phenomena (Galor and Weil, 2000; Galor, 2005; Doepke, 2005; Maddison, 2007). What does the long run picture look for Peru? And what are the recent trends? This section presents stylized facts to illustrate the relations among demographic (fertility and population growth) and economic variables (ouput evolution) in Peru. We will analyze these facts more formally in Section 4. Due to endogeneity bias, wee need to use modern econometric techniques to analyze the explanation of the model presented in Section 4. The estimation results are presented in section 5. Thus, this section only provides\emph{ prima facie }evidence.
+
+We believe there is sufficient historical evidence suggesting that the evolution of the relation between income per capita, population growth, economic growth and human capital in Peru can also be described under a Unified Growth Theory view. On a two thousand year scale, both population and GDP per capita in Peru would probably look very similar to the famous graph that Maddison created for the evolution of income  per capita across world regions between years 0 and 2001 (see Doepke, 2005; Maddison, 2007). An approximate figure for our case study only for the period 1701-2010 can be seen in Figure~\ref{longgdp}.
+\begin{figure}[h]
+\caption{GDP per capita in Peru between 1700-2010}
+\centering
+\includegraphics[width=0.7 \textwidth]{seminario.pdf} \\
+\footnotesize
+\textit{Source: Luis Seminario (2011). Units are real Geary-Khamis Dollars.}
+\label{longgdp}
+\end{figure}
+We avoid long speculative discussions regarding the first 1500 years of history, years that definitely witnessed a stagnation in economic growth per capita as compared to our current standards; and reduce the scope of analysis for the years that experience more \emph{change}. Our period of analysis can be seen in Figure~\ref{tfrandle}, together with approximate numbers of the Peruvian population between years 1500 and 2050. Naturally, the more distant the year, the more remote plotted numbers are from the actual figures. However, it seems that Peru also encompases the three disctinct regimes that have characterized the long run process of population growth and economic development. The shape of this figure is similar to those plotted for Europe and differences in the period 1500-1620 (which shows a huge negative shock to population, known between historians as demographic collapse) show the impact of the Spanish conquest to aboriginal Peru\footnote{European negative shocks to population, such as the Black Death circa 1348, were reflected in higher wages and faster population growth (Livi-Bacci, 1997). The Peruvian case is different. For 100 years, population did nothing but decrease. Income per capita was steadily very low for the first three hundred years. The highest level between 1500 and 1827 was probably reached in 1827: 30.4 pesos per capita (Gootenberg, 1995).}.
+
+Figure~\ref{longgdp} and Figure~\ref{tfrandle} suggest a Unified Growth Theory explanation of the long run demographic and economic development of Peru. After a demographic collapse provoked by the Spanish Conquest -the death of 6 million Indians in less than 50 years (Cook, 2005)- came a Malthusian regime, characterized by low levels of per capita income, low economic and population growth, high mortality and consequently high fertility rates, and low levels of human capital (life expectancy and education attainment). This equilibrium started to break slowly when income per capita began to grow, without yet cancelling the Malthusian relationship between income per capita and population growth. Rising income implied rising population growth and fertility rates (i.e, the income effect was larger than substitution effect) until some point around 1960. Figure~\ref{a} illustrates this inflection.
+\begin{figure}[h]
+\caption{Population Growth between 1701-2010}
+\centering
+\includegraphics[width=0.85 \textwidth]{populationgrowthrate.pdf} \\
+\footnotesize
+\textit{Source: Luis Seminario (2011). Population Growth acceleration starts decreasing some years before 1950. Population Growth becomes a decreasing function in the middle of the 60's. Notice an inflection point approximately at 1950 and another at around 1960.}
+\label{a}
+\end{figure}
+After 1960, it seems that the economy entered into a demographic transition to Modern Growth Regime, where increases in income no longer translated into larger population size, and we can consequently observe better living conditions and levels of human capital. We will argue that behind this growth takeoff there was an accelerated rate of technological progress.  As human capital levels rose, the quantity-quality of children mechanism reinforced the previous income effect, lowering the fertility and population growth rates even further. Let us take a closer look at this 510 years process.
+\subsection{Pre-conquest Peru and the Demographic Collapse (1520-1620)}
+The evolution of Peruvian economy during its pre-conquest history was marked by Malthusian Stagnation. Compared to our current standards, technological progress was insignificant. However, and contrary to the European case, population growth was, most likely, not negligible.
+
+While we will never be able to know the exact population of Peru before the arrival of Spaniards in the sixteenth century\footnote{The Incas were probably well aware of the number of inhabitants under control, for taxing purposes. However, there are no writen records available and thus we will never know the exact number.}, Cook (2005) estimated the pre-conquest population circa 1500 as 9 million, based on a carefully analyzed maximal epidemic disease model.
+
+This number is certainly large and historically rare to observe in pre-industrial civilizations\footnote{As a reference, the population of the United Kingdom by 1700 was approximately 8.65 million (Maddison, 2007).}, exception be made of China. Unfortunately, due to lack of records and data, any attempt to grasp how the Incas might have reached such a dense population are highly speculative. But there is evidence of the existence of institutions that supported an expansive population policy. Incas were known to protect youth. For example, killing a child led to a death sentence. Fertility and childbirth had religious meanings and were socially respected. Women were withheld from heavy field labor during the child's first year, and most importantly, they probably married quite early (before reaching 20). At the same time, since the Andes are scarce in arable land, this population was supported by a very efficient agricultural and hydraulic system\footnote{This fact is left unexplored but it is still interesting, since it could imply the existence of some form of technological progress.}.
+
+Such a number might also suggest the possibility that the Incas had or were about to reach ``critical density", and that Malthusian checks were already in motion. Interestingly, there is evidence supporting the fact that population, despite being very dense, did not reach the limits of the capacity to sustain it (Cook, 2005). Unlike the Aztecs\footnote{In the last years of their Empire, Aztecs became famous in Central America for executing prisoners massively, as an extreme, forced and ultimate Malthusian check.}, no Malthusian checks, such as warfare or famines, seem to have had a sustained strong negative effect on population growth before the arrival of the Spaniards. Cook suggests that the Inca Empire had capacity to feed 13,3 million people. However, we cannot be sure about how long it took for the Incas to reach its dense population: it could have been a hundread years (which would involve a very high population growth ratio) or more.
+\begin{figure}[h]
+\caption{Peruvian Population between 1500-2050 \emph{(Average Assumptions)}}
+\centering
+\includegraphics[width=0.85 \textwidth]{long.pdf} \\
+\footnotesize
+\textit{Note: Plotted using several sources (mainly Cook,2004 for 1500-1620; Gootenberg, 1995, for 1620-1940; and INEI,2009 for 1950-2050). Years from 1520-1620 have an upward bias.}
+\label{tfrandle}
+\end{figure}
+In the next half-century, population fell to 1 million and by 1620 stood at around 600,000. The cause of Indian death was disease\footnote{Between 1523-1635 Dobyns (1963) recorded 23 epidemics. Smallpox, typhus, measles and diphtheria were the most common.} in the vast majority of cases. Following Cook (2005), we call this period \emph{Demographic Collapse}. The arrival of the Spaniards and their consequences to population can be clearly observed in Figure~\ref{tfrandle}. Had the conquers not arrived, it might have taken many more years before Malthusian checks had appeared in Peru. However, the arrival of the Spaniards and the epidemics carried with them inaugurated a new population cycle. To summarize, as we described above, due to the relatively high number of Peruvians living before 1500, we might not be sure of whether the Incas experienced or not a Malthusian Regime. Evidence suggests they were not struggling for existence. But we can be positively sure that after a massive decline in aborigin population, Peru entered a Malthusian epoch circa 1620-1650\footnote{Though a fascinating study, the economic consequences of such a devastating demographic collapse, together with the fast replacement of several Inca institutions by newly imposed ones, like enforced mining labor, are not the object of the study in this paper. However, their economic effects are known for being very persistent, up to current days (See for example, Dell, 2010).}.
+
+\emph{Our \textbf{claim} is that the demographic collapse altered the timing but not the occurrence of the Malthusian Regime, and consequently the take-off from stagnation to growth}, a process of development that sooner or later was bound to happen\footnote{``Unified growth theory suggests that the transition from stagnation to growth is an inevitable by-product of the process of development" (Galor, 2005).}.
+\subsection{The Malthusian Regime (1620-1900)}
+The Conquest of the Incas culminated with the installment of the Viceroy that of Peru, function lasted almost 300 years (until 1821). During this time and up until 1900, the average growth rate of output per capita was negligible. The Peruvian Malthusian Regime and the World Malthusian Regime coexisted for the 17th, 18th and most of the 19th century. However, while some countries started the transition to Modern Economic Growth as early as the end of the 18th century, in this subsection we provide stylized evidence (see Figures ~\ref{longgdp},~\ref{a} and~\ref{tfrandle}) that suggest Peru was trapped in a Malthusian undeveloped steady state with high birth rates, negligible output and human per capita levels until the beginning of the 20th century.
+
+The extreme conditions under which Indians were forced to work in mines and other constant abuses, as reported by Bartolome de las Casas, all suggest that this period saw steady high mortality rates and very low life expectancy levels. The relation between mortality and fertility was more complex, probably due to fluctuations in fertility rates during 1700-1900 (before 1700, population growth was most likely negative). The lowest population growth rate was close to -2\% circa 1725. On the contrary, as we observe in Figure~\ref{a}, the highest peak between 1700-1825 was 1.5\% and reached approximately 2\% circa 1865. Thus, periods of rising income per capita probably allowed an increase in the number of surviving offspring, which in turn increased fertility rates. Periods of high rising mortality rates also increased fertility rates to maintain the number of surviving offspring. The lowest peaks of 1725, 1750 and 1850 in population growth rate (caused by epidemics) were all followed by a fast positive increase in fertility rates and consequently rising population growth rates.
+
+Income per capita remained very low, under 500 Geary-Khamis dollars, until 1700; and fluctuated between 500 and 1000 dollars between 1700 and 1910. Tepaske (1982) analyzed the public Spanish Kingdom income from Lima (obtained from taxes, mining, \emph{encomiendas}, etc.): if we were to take the year of 1580 as our index (Income in 1580 = 100), the lowest peak was reached in 1710 (37) and the highest peak in 1780 (157). If we consider that Income in 1580 was recorded as of 2,611,612 pesos, we conclude that levels of income were insignificant compared to current standards, despite the observed volatility.
+
+Economically speaking, the Independence of Peru in 1821 has little ``positive" meaning. If any, the Independence War was expensive (Contreras, 2010). Mining production had to be stopped more than once (silver production reached its lowest peak between 1780 and 1880 in 1820-29) and taxes had to rise to finance the war. Massive emigration to Spain and the physical destruction of many properties contributed to the recession. It took several years for a recovery to take place (Huenefeld, 1985). 1861-72 saw a massive expansion of plantations. The highest ouput growth point was reached after the Independence from Spain, in 1876 (Seminario, 2011). GDP per capita was estimated at \$1124 and the period 1876-1877 experienced a 10.04\% variation rate. This was mainly due to favourable investments in agriculture, railway infrastructure and saltpetre exports. The Pacific War begun in 1879, the invasion of Lima and the final capitulation and loss of saltpeter mines meant the end of this short boom and a deep recession that would last for more than a decade.
+
+\emph{Our \textbf{claim} is that despite the various political changes, including the Independence from the Viceroy of Spain and the Pacific War, which increased the volatility in output variations,output per capita levels remained very low between 1620 and 1900. Fertility rates fluctuated due to relative changes in income and mortality rates. Both negative and positive population growth rates were observed. The average population growth, though positive, was considerably small in magnitude.}
+\subsection{The beginning of the 20th century and Post-Malthusian period}
+By the first years of the 20th century, ouput started to grow at a considerably higher rate than in past years. However, the positive Malthusian effect of income per capita on population growth still worked. Higher income and higher population growth rates were both present, but most likely the effect of higher population on diluting resources per capita and lowering income per capita was counteracted by an early and relatively accelerated technological progress, early industrialization and capital accumulation. Consequently, income per capita rose. The average growth rate of output per capita went on from 0.76\% between 1700-1913, to 1.99\% for the period 1913-1950(Seminario, 2011)\footnote{Between 1913-1950, England and the United States, which were already in the middle of their demographic transition, experienced 0.93\% and 1.61\% respectively. The average output per capita growth rate in Latin America was of 1.14\%. (Maddison, 2007)}.
+
+Between 1900 and 1950 the average growth rate of total ouput in Peru was 4.02\%. Almost half of this increase was matched by increased population gowth, making average ouput per capita slightly less than 2\%. Like in Europe, the rate of population growth relative to the growth rate of aggregate income declined gradually over this period.
+
+\emph{Fertility and Mortality:} There is little data available regarding mortality levels during this period, but one would expect a decline, as compared to the years prior to this Regime, mainly caused by massive vaccination campaings. Inital levels of child mortality before the campaigns were very high. Between 1903 and 1908, 248 newborns (per 1000) did not reach one year of age. However, the most significant decrease in mortality was recorded between the Population Census of 1941, which registered 26 deaths per 1,000 people, and the Census of 1961, which recorded 15,4 (INEI; 1940, 1961). The significant rise in income per capita during this period might have increased the desirable number of surviving offspring (Galor, 2005), and despite the decline in mortality rates, fertility increased.
+
+\emph{Early Industrialization and urbanization:} The Post-Malthusian take-off in developed regions was accompanied by a rapid process of industrialization (Galor, 2005). In Peru, most of this process ocurred after 1950. However, an export-driven industrialization process started to set in as early as the beginning of the 20th century, at a relatively moderate pace. While Peru was mainly an agriculture and mining based economy at the end of the 19th century, by 1954, a moderate 12,8\% of total output production was industrial. Rural-urban migrations began as the first highways were constructed in the 20's, but it was only after 1950 that we could observe strong and fast reductions in rural population rates.
+
+\emph{Exports:} Interestingly, despite the world crisis of 1893\footnote{Known in Latin America as the Baring Crisis, associated with the bankrupcy of Baring Brothers Co.} Peruvian exports increased, from occupying 12,4\% (1896) to 27,9\% (1929) of Total Output (Contreras, 2009). Indeed, this period saw a high increase in the volume of exports. Seminario et al., (1998) estimated that total exports multiplied fourteen times, from 54 million in 1896 to 222 million in 1929, measured in constant 1958 American dollars. While the GDP per capita contracted by 25\% between 1929-1932, by 1936 it recovered its normal levels. The Great Recession particularly affected Government income (Peru stopped paying its external debt in 1931) and the public sector did not recover until 1950. We could hypothesize that crowding-out effects counterbalanced the loss of public income in favor of the private sector.
+
+Developed economies have experienced early stages of human capital formation as early as in their Post-Malthusian Period. In this sense, we find evidence indicating decreasing mortality rates but we are not able to find any that supports significant improvements in educational attainment for this period . Most likely, the new demand for skilled workers due to early industrialization was not strong enough to generate an increase in aggregate demand for human capital.
+
+Our \textbf{claim} is: \emph{With the dawn of the 20th century, we started to see both higher income and population growth rates. Although the growth rate of ouput per capita increased significantly, mainly due to exports, the positive Malthusian effect of income per capita on population growth was still maintained, generating increases in population. Between 1940 and 1960 Peru's population increased by almost 40\%. }
+\subsection{The Sustained Modern Growth Regime: 1960-Present}
+As accelerated technological progress and industrialization continued to develop, human capital levels eventually started to accumulate enough so as to bring a demographic transition period characterized by a fast decrease in fertility and mortality rates, which eventually led to decreasing population growth rates. A human capital demand replaced a quantity demand.
+
+\emph{The Demographic Transition:} Since technological progress and capital accumulation did not have to be counterbalanced with increasing population rates as before, sustainable output growth per capita set in. We shall call this period \emph{Sustained Modern Growth Regime} or simply \emph{Modern Growth}. Demographic evidence suggests the beginning of the Modern Growth period to be circa 1960. The TFR\footnote{TFR = Total Fertility Rate; CFR= Crude Fertility Rate.} in Peru was one of the highest in the world not too long ago, at around 7 births per woman until the early 70's. In the previous Post-Malthusian 1940-1961, population increased tremendously, from 6.6 to 10.2 million. The period 1961-1972 saw 6.1 births per woman. However, by 1981-1993, the rate had fallen vastly (3,4). Between 1993 and 2007, the Peruvian TFR went from 4.01 to 2.46 births per woman, a 36.2\% reduction in 14 years. By 2009, the Peruvian and the World TFR went from estimated to be of 2.53 and 2.47 births per woman respectively. If the trend continues, and most likely it will, the Peruvian TFR will be lower than the world average before 2015. Figure~\ref{pw} plots both Peruvian and World TFR's.
+\begin{figure}[h]
+\caption{Peruvian and World Fertility Rates (1970-2000)}
+\centering
+\includegraphics[width=0.75 \textwidth]{wtf.pdf} \\
+\label{pw}
+\end{figure}
+As it can be seen in Figure~\ref{le}, this reduction was translated in a decrease in population growth rates from 2,73\% (1960) to 1,05\% (2009), together with considerable reductions in mortality. However, although the rates of population growth decreased over time, levels remained somewhat high. Total Population increased from 10,216,429 (1961) to 29,076,512 peruvians (2010).
+
+Speaking in terms of cohorts, Peruvians are young in average, since 30\% of the total population is between 0-14 years. The average age-dependency ratio\footnote{Ratio of dependents (people younger than 15 or older than 64) to the working-age population (those aged 15-64).} is of 56\% (2010).
+\begin{figure}[h]
+\caption{Life Expectancy and Total Fertility Rate (Peru, 1970-2000)}
+\centering
+\includegraphics[width=0.5 \textwidth]{ng1.pdf} \\
+\footnotesize
+\textit{Note: The combination of fertility and mortality determines population growth. Life expectancy data was obtained from World Bank (2001) and Fertility Rates from the Instituto Nacional de Estad\'istica e Inform\'atica (INEI, 1995). Population growth isoquants are given as a reference, in the fashion of Lee (2003).}
+\label{le}
+\end{figure}
+This demographic transition enhanced the growth process via at least three channels (Galor, 2005): i) a reduction of the dilution of stock of capital and land, ii) enhancement of investments in human capital per child, instead of quantity of children\footnote{In a recent paper, Galor (2010) further suggests other reinforcing mechanisms for the rise in demand for human capital after the onset of the demographic transition: i) decline in child labor, ii) rise in life expectancy, iii) globalization, and iv) evolution of preferences for offspring's quality, through evolutionary processes driven by cultural, religious movements and the forces of natural selection.}, and iii) alteration of the age distribution of population, temporarily increasing the size of the labor force relative to the population. The rise in demand for human capital is particularly associated with the timing of the demographic transition, as we shall see theoretically in Section 4 and empirically in Section 5. Peru is not an exception. On the contrary, there is worlwide evidence (Galor, 2005; Galor, 2010) of the close association with the demographic transition and the timing of the rise in demand for human capital. As Galor (2010) indicates: \emph{``(this) has led researchers to argue that the increasing role of human capital in the production process induced households to increase their investment in the human capital of their offspring, leading to the onset of the fertility decline"}. We shall argue later that the acceleration in the rate of technological progress was the main engine behind the increase in demand for human capital.
+
+\emph{Inner migrations:} This is a proper moment to make a parenthesis and analyze the urban-rural relation. The decrease in TFR that took place in the last 50 years is far from being a homogenous process in the country. While Lima (the biggest city in the country, its capital and home to about one third of its population) and other major cities experienced a fast decrease, rural areas are still facing high rates, though the decrease in fertility rate was bigger than in urban areas. A study by INEI (2007) estimated that the total, rural and urban fertility rates for 2007 were 2.56, 3.82 and 2.25 respectively. The 4th poorest regions in terms of TFR -Huancavelica, Apurimac, Huanuco and Puno\footnote{Not coincidentaly, all of them are located in the Andes region.}- were respectively 7.05, 7.16, 6 and 5.14 in 1993. These rates became 3.03, 3.35, 2.82 and 2.84 in 2007. The reduction in 14 years was of 57, 53.2, 53 and 44.7\% respectively. The rapid and significant reduction in fertility rates together with migratory movements and the introduction of family planning programmes\footnote{Angeles et al. conclude that the National Policy on Population program implemented particularly in rural Peru after 1985 helped to reduce fertility. For example, for a woman with 5-6 years of education, there would have been a difference of 1.24 conceptions over the woman's reproductive lifetime had pharmacies and dispensaries been continuously available.} contributed to the enormous reduction in rural population (as a percentage of total population), from 53\% (1960) to  31\%(2010)\footnote{Despite the positive economic growth experienced particularly in the last 10 years, rural poverty rates are very high: 54.2\% (World Bank, 2010)}.
+\begin{figure}[h]
+\caption{Rural Population (\% of Total Population) for 1960-2010}
+\centering
+\includegraphics[width=0.5 \textwidth]{rural.pdf} \\
+\footnotesize
+\textit{Note: Plotted with data obtained from the Instituto Nacional de Estad\'istica e Inform\'atica (INEI).}
+\label{rural}
+\end{figure}
+
+\emph{Recent human capital levels:} Human capital levels also raised substantially. The rural areas of Peru were the most affected by high mortality rates and low life expectancy. But by 2008 only 5.5\% of total newborns had low birthweight (INEI, 2009). Rural regions experienced levels above average (Pasco: 9.7\%; Apurimac: 7.6\%). Looking at certain characteristics of mothers might also provide an idea of human newborns capital levels. In the same year, 4.9\% of mothers were illiterate, 21.6\% had elementary education and 48.4\% had high school education; 3.8\% of them were adolescents (12-17 years). Only 25.7\% of them were married, and 68\% of them did not belong to the active labor force.
+\begin{figure}[h]
+\caption{Gross Domestic Product (Real) in Million Soles for 1950-2010}
+\centering
+\includegraphics[width=0.7 \textwidth]{1950-2010macrovariables.pdf} \\
+\footnotesize
+\textit{Note: Plotted with data obtained from the Central Bank of Reserve, Peru.}
+\label{macro}
+\end{figure}
+
+\emph{Macroeconomic performance:} The decrease in population growth was complemented by significant increases in income (and thus income per capita), particularly for years after 1960, as we see in Figure ~\ref{macro}\footnote{An analysis of the short-run volatile variations of the components of GDP is beyond the scope of this paper. It is sufficient to note the long run trend.}. This negative relation between the level of output and the growth rate of population is known as demographic transition to sustainable growth, and is a feature of the \emph{Modern Growth Regime}.
+
+\emph{Industrialization:} While the previous Regime experienced early industrialization, the interval 1950-1975 (known as the \emph{Golden Age}) saw the highest percentage of total output from the industrial sector (21,4\% in 1975). During this period, industrial production grew at higher rates than total GDP. The primary sector percentage of GDP decreased from 8,5\% in 1954 to 3,7\% in 1975. The Golden Age of the Industrialization in Peru was enhanced by several legal frameworks and benefits. However, there is evidence that the industrialization process was oriented towards the substitution of imports. Investments did not properly and sustainably stimulate the domestic market and the high industrialization growth rate could not be sustained in the long run (Jim\'enez, 1997).
+
+\emph{Rising demand for human capital:} This period is characterized by a rising demand for universities, schools, higher institution facilities, teachers, etc (World Bank, 2011). This trend will most likely continue for many years\footnote{Rising demand for human capital can be observed as early as the mid 20th century. However, the last 30 years have seen a tremendously high rise. Between 1980 and 2010 Peruvian expenditure increased from 735,620,360 to 2,944,426,580 Real US Dollars. Secondary school enrollment increased from 59\%(1981) to 89\%(2007). Literacy rates increased from 82\%(1981) to 90\%(2007). Source: World Bank, 2011.}. Figure~\ref{universities} shows that most of the universities were founded in Peru after 1950. This suggests an increasing demand for human capital, probably caused by an accelerated rate of technology that installed a market labor in need for literate, trained professionals, during the periods after the Malthusian Stagnation. The close timing between the demographic transition and the increase in demand for human capital is no coincidence. As the tradeoff between quantity and quality of children inclined towards quality, fertility decreased.
+\begin{figure}[h]
+\caption{Number of Universities in Peru (1700-2010)}
+\centering
+\includegraphics[width=0.62 \textwidth]{unis.pdf} \\
+\footnotesize
+\label{universities}
+\end{figure}
+
+To conclude this section, our final \textbf{claim} is: \emph{Demographic evidence suggests the beginning of the Peruvian demographic transition as circa 1960. The timing of the demographic transition is closely associated with a fast industrialization process known as the Golden Age (1950-1975), a rising demand for human capital and overall increasing GDP components.}
+\section{Theoretical Framework}
+In this section we present a simplification of the Unified Growth Theory Model (Galor and Weil, 2000) made by Doepke (2005). This simple model was also used by Mej\'ia et al. (2008) to explain the demographic transition in Colombia.
+
+\subsection{Explaining the Malthusian Regime}
+We need to rely on a model available to explain the facts mentioned in the previous section, which requires taking into account endogenous technological progress depending on population size and on educational levels and endogenous fertility decisions. Galor and Weil (2000) provided a complex model with various ingredients, of which we shall use a very simplified version to explain the long run relation between income, the rate of population growth, fertility rates and human capital investments in Peru. This simple version allows us to derive both the traits of the Malthusian epoch (1700-1900) and the Modern Growth regime which was observed after 1960. For a deep analysis of the dynamics of the model, including an explicit derivation of the Post-Malthusian Regime, refer to Galor and Weil (2000) and Galor (2005).
+
+The output produced at time $t$ is defined by the following aggregate production function:
+\begin{equation}\label{gw1}
+    Y_{t}=A_{t}N^{\alpha}_{t}Z^{1-\alpha}, \alpha\in(0,1)
+\end{equation}
+where $A_{t}$ is productivity, $N_{t}$ is the size of the population and $Z$ is land supply, which is fixed exogenously.
+Output per worker at time $t$, $y_{t}$ is:
+\begin{equation}\label{gw2}
+    y_{t}=Y_{t}/N_{t}=A_{t}N^{\alpha}_{t}Z^{1-\alpha}/N_{t}=(A_{t})(Z/N_{t})^{1-\alpha}=A_{t}z^{1-\alpha}_{t}
+\end{equation}
+We denote the growth rate of a variable $x$ as: $\gamma(x)$. The growth rate of ouput per capita $\gamma(y_{t})$ satisfies:
+\begin{equation}\label{gw3}
+\gamma(y_{t})=\gamma(A_{t})+(1-\alpha)\gamma(z_{t})
+\end{equation}
+The growth rate of land per capita is:
+\begin{equation}\label{gw4}
+\gamma(z_{t})=\gamma(Z)-\gamma(N_{t})=-\gamma(N_{t})
+\end{equation}
+Substituting~\ref{gw4} in~\ref{gw3}:
+\begin{equation}\label{gw5}
+\gamma(y_{t})=\gamma(A_{t})-(1-\alpha)\gamma(N_{t})
+\end{equation}
+Since the expression $1-\alpha$ is a parameter, we can express~\ref{gw5} as:
+\begin{equation}\label{gw6}
+\gamma(y_{t})=g(A_{t},N_{t})
+\end{equation}
+From~\ref{gw5} and~\ref{gw6}, we can note that the growth rate of income per capita is an increasing function of productivity growth and a decreasing function of population growth. The next assumption is crucial. We assume that population growth is a function of income per capita $y_{t}$. Since we want to explain the Malthusian stagnation, let us assume that population growth is expressed as a function strictly increasing and derivable in $y_{t}$:
+\begin{equation}\label{detail1}
+f:\mathbb{R}\longrightarrow\mathbb{R}, f'(\mathbb{R})\subseteq(0,\infty)
+\end{equation}
+and
+\begin{equation}\label{gw7}
+\gamma(N_{t})=f(y_{t}), f'(y_{t})>0
+\end{equation}
+Using~\ref{gw7}, we re-express~\ref{gw5} as:
+\begin{equation}\label{gw8}
+\gamma(y_{t})=\gamma(A_{t})-(1-\alpha)f(y_{t})
+\end{equation}
+We assume that the growth rate of productivity is constant, that is, $\gamma(A_{t})\equiv\overline{\gamma_{A}}$. Then, equation~\ref{gw8} becomes:
+\begin{equation}\label{gw9}
+\gamma(y_{t})=\overline{\gamma_{A}}-(1-\alpha)f(y_{t})
+\end{equation}
+Thus, the growth rate of income per capita is a decreasing function of \textbf{its level}. If $(1-\alpha)f(y_{t})$ is large enough, it could offset constant productivity growth; that is, $(1-\alpha)f(y_{t})=\overline{\gamma_{A}}$ , which would lead to stagnation. Now, if instead of assuming~\ref{gw7}, we assume $f'(y_{t})<0$, i.e. population growth as a strictly decreasing function of income per capita, then the growth rate of income per capita would be a decreasing function of its level. This would lead to a Non-Malthusian state (Modern Growth Regime). If population growth ceases, that is, if $\gamma(N_{t})=0$, growth in output per capita equals growth productivity. Under this condition, if productivity increases indefinitely, so will income.
+\begin{figure}[h]
+\caption{Malthusian and Non-Malthusian Periods}
+\centering
+\includegraphics[width=1 \textwidth]{gw.pdf} \\
+\footnotesize
+\textit{Note that this graph does not include the Post-Malthusian Regime, which cannot be obtained from this simple version of Galor and Weil (2000). In the left hand side, we obtain a Malthusian Regime wheres $y_{t}\in<0,y^*_{t}>$, because $f'(y_{t})<0$.}
+\label{galorweil}
+\end{figure}
+This framework implies that if income per capita is initally rising in Peru, population growth will accelerate until it fully offsets productivity growth. Facts presented in the previous section are coherent with this. We shall test this implication in Section 5.
+\subsection{Inserting a child quantity-quality trade-off:}
+Consider now an infinite discrete time overlapping generations economy with a single homogenous good. Members of generation $t$ live for two periods. In the first period of their life, $t-1$, agents only consume (childhood). All agents are endowed with one unit of time (1). Individuals get their income from trading their unit of time in the labor market, in exchange of wage per units of human capital, $w_{t}$\footnote{That is: Income$=w_{t}h_{t}$.}. A generation $t$ agent's preferences are given by:
+\begin{equation}\label{gw10}
+u(c_{t},n_{t},h_{t+1})=(1-\beta)ln(c_{t})+\beta[ln(n_{t})+\gamma ln(h_{t+1})]; \beta,\gamma\in(0,1)
+\end{equation}
+In this utility function, $n$ is the number of children, and $h$ is the quality of each child. We assume a one-to-one transformation of time spent in children's education and their level of quality (education). For a child with quality $0$, parents spend $\phi$ units of time. For a child with quality $e$, parents spend $e$ units of time. The representative agent's BC is given by:
+\begin{equation}\label{gw11}
+c_{t}=[1-(\phi_{t}+e_{t})n_{t}]w_{t}h_{t}
+\end{equation}
+Investment in the education of children in $t$ becomes human capital in $t+1$, i.e:
+\begin{equation}\label{gw12}
+h_{t+1}=1+\mu h_{t}e_{t}, \mu>0
+\end{equation}
+$\mu$ being a parameter that measures the efficiency of parental time investment in the formation of children's human capital. If technological progress occurs, wages will rise over time and this will increase the returns to parent's time investments in $h_{t+1}$. However, $\mu$  can also act as a catch-all parameter, that is, other factors like \emph{increases in life expectancy}, \emph{globalization} or \emph{evolution of preferences for offspring's quality} due to, perhaps, religious or cultural reasons (Galor, 2011) can increase $\mu$. We shall empirically develop this point in Section 5. Note also that if $e_{t}=0$, $h_{t+1}$ is still equal to 1\footnote{This is somehow realistic. 1 is the level that reflects minimum skills for labor. It is also important for technical reasons, since it will guarantee the existence of a corner solution for the problem of the representative agent's utility maximization}. We also set up a minimum amount of consumption needed for survival:
+\begin{equation}\label{gw13}
+c_{t}\geq \overline{c}
+\end{equation}
+The representative agent chooses the non negative levels of $c_{t}$, $n_{t}$ and $e_{t}$ that maximizes~\ref{gw10} subject to ~\ref{gw11},~\ref{gw12} and~\ref{gw13}.
+
+Now, we implicitly state that technological progress is always occurring, whether at a very slow, moderate or accelerating rate, and thus $w_{t}$ and returns to parental time investment in human capital of children are rising. For an explicit modelling of this statement, see Galor and Weil (2000) or Galor (2005).
+
+The maximization problem has a corner solution corresponding to the Malthusian Regime and an interior solution corresponding to the Modern Growth Regime.
+
+\textbf{Matlhusian Regime:} If $w_{t}h_{t}\leq\frac{\overline{c}}{1-\beta}$\footnote{That is, if income is lower than a threshold level that makes the subsistence constraint binding.}, then the solution to the problem is given by:
+\begin{equation}\label{gw14}
+c^\star_{t}=\overline{c}=[1-\phi n^\star_{t}]w_{t}h_{t} \longleftrightarrow n^\star_{t}=\frac{1}{\phi}(1-\frac{\overline{c}}{w_{t}h_{t}})
+\end{equation}
+and,
+\begin{equation}\label{gw15}
+e^\star=0
+\end{equation}
+This solution implies that $h_{t}$ will be equal to 1 (minimum basic skills). As we mentioned before, due to technological progress wages, are somehow increasing over time but if at time $t$ the wage rate is sufficiently low, the subsistance constraint will be binding\footnote{That is: for $w_{t} < \frac{\overline{c}}{1-\beta}$, the subsistence constraint will be binding.}. In this period, income is low, consumption remains at its substainance level and there is no investment in children or relation between income and human capital investment. Population growth is increasing in income.
+
+\textbf{Modern Growth Regime:} As technological progress accelerates, wages will further increase. At one point, the subsistence consumption will not be binding any more ($w_{t}>\frac{\overline{c}}{1-\beta}$) and the solution of the representative agent's problem will be interior and given by first order conditions:
+\begin{equation}\label{gw16}
+c^{\star\star}_{t}=(1-\beta)w_{t}h_{t}
+\end{equation}
+\begin{equation}\label{gw17}
+n^{\star\star}_{t}=\frac{\beta}{\phi+e^{\star\star}_{t}}
+\end{equation}
+\begin{equation}\label{gw18}
+e^{\star\star}_{t}=\frac{1}{1-\gamma}(\gamma\phi-\frac{1}{\mu h_{t}})
+\end{equation}
+Income increases translate into higher living standards, higher investments in education and lower population growth. This period corresponds to the Modern Growth Regime. According to this model, an increase in the preference for educated offspring decreases fertility. Also, the level of fertility is inversely related to investments in education. We shall test these implications empirically in Section 5.
+\begin{figure}[h]
+\caption{Preferences and Income Expansion Path}
+\centering
+\includegraphics[width=0.62 \textwidth]{gw2.pdf} \\
+\footnotesize
+\textit{The income expansion path is vertical as long as the subsistence consumption constraint is binding. If $w_{t}$ lies within this range, the agent can obtain $\overline{c}$ with a smaller labor force participation and thus child rearing time increases.}
+\label{galorweil2}
+\end{figure}
+\section{Estimations and Results}
+As in Mej\'ia et al. (2008), we omit the separation between the Malthusian and Post-Malthusian Regime in this empirical analysis\footnote{Finding accurate estimates for human capital indexes or early industrialization signals between 1900 and 1960 is the main difficulty when doing an empirical study for the Post-Malthusian Regime.}, and consider only two epochs: Malthusian (approximately 1700-1920) and Modern Growth (1960-2008), as we did in the previous section.
+\subsection{Data}
+Due to data scarcity, we construct three time series. Our first series ($S1$) is the poorest one in terms of accuracy, because it covers the period 1700-2010 and includes annual data for total population ($N$), real per capita gross domestic product ($RPGDP$) and number of universities ($universities$) divided by total population as a proxy for human capital($HC_{S1}$). We shall use $S1$ to mainly verify the the dynamics between income and population growth during the Malthusian Period. Data in $S1$ is annual and represents the whole country.
+
+Our second series ($S2$) is the most complete one, and covers the period 1960-2008. Thanks to data availability, we can afford to include series of fertility ($TFR$), child mortality ($MR$), and most importantly, use various proxies for human capital. We shall use $S2$ to understand the behavior of the Demographic Transition and Modern Growth Regime. Data in $S2$ is annual and of national scale. Because we have various proxies for Human Capital, we shall perform sensitivity analysis on $S2$.
+
+Our third time series ($S3$) covers a very short period but it has an interesting feature: it includes monthly data for the total number of births($TNB_{national}$) registered, which we shall use to create our monthly proxy for fertility and plot the short run dynamics of economic growth and fertility. Our data sources include the Central Bank of Peru (Spanish: BCRP) for monetary variables, the National Institute of Statistics and Informatics (Spanish: INEI) for demographic variables, the Ministry of Education, the World Bank (World Bank, 2011) and estimations of ouput and population for the period 1700-2010 by Seminario (2011)
+\subsection{VAR Analysis}
+\textbf{Setup:} Our unrestricted VAR model is expressed as:
+\begin{equation}\label{VARmalthus1}
+B(p)X_{t}=\varepsilon_{t}
+\end{equation}
+where $X_{t}$ is a type $(m,1)$ vector of endogenous variables $HC_{S1,t}$, $RPGDP_{t}$ and $N_{t}$; $B(p)$ is a $(m\times m)$ nonsingular polynomial matrix in the lag operator $p$ and $\varepsilon_{t}$ is a type $(m,1)$ vector of structural shocks. $\varepsilon_{t}$ is independently identically distributed and exogenous. 
+
+We obtain the reduced form of~\ref{VARmalthus1} by solving for $X_{t}$:
+\begin{equation}\label{VARmalthus2}
+X_{t}=B(p)^{-1}\varepsilon_{t}
+\end{equation}
+As usual, $B_{0}$ is assumed to be a lower triangular matrix and $X_{t-j}$ is assumed to be a linear function of $\varepsilon_{t-j}, \varepsilon_{t-j-1},...$, each of them uncorrelated with $\varepsilon_{t+1}$. Under these assumptions, we can create the following \emph{moving average representation} of~\ref{VARmalthus2}:
+\begin{equation}\label{VARmalthus3}
+X_{t}=B^{-1}_{0}(\varepsilon_{t}-B_{1}X_{t-1}-B_{2}X_{t-2}-...-B_{p}X_{p})
+\end{equation}
+The maximum likelihood estimates of $B(L)$ are obtained by regressing $X_{t}$ on its lagged values. After we obtain the estimates using the VAR model, the residuals or shocks to each of the equations are plotted over time to get Impulse Response Functions (IRF). Since a residual is an exogenous shock or innovation to the equations in the system, we can employ the IRF's to describe the dynamics of the series.
+
+\textbf{The Malthusian Regime:} From $S1$, we select a sample for the years 1715-1920 and we perform a VAR(15)\footnote{To capture the full cycle of the data, we set 15 as the number of lags ($p=15$). We have also used 16, 17 and 18 lags, finding similar results.} estimation. Our vector autoregression includes $HC_{S1}$, $RPGDP$ and $N$. The order of processing these series allows human capital to affect both income and population.
+\begin{figure}[h]
+\caption{IRF from $RPGDP$ Per Capita to Population}
+\centering
+\includegraphics[width=0.70 \textwidth]{VAR1.pdf} \\
+\footnotesize
+\label{VAR1}
+\end{figure}
+Figure~\ref{VAR1} depicts the response of population to a positive one-standard-deviation shock in real per capita GDP during the Malthusian Regime. As the theoretical framework (Section 4.1) and our stylized facts (Section 3) predict, a positive shock in GDP produces an increment in population.
+\begin{figure}[h]
+\caption{IRF from GDP Per Capita to Human Capital}
+\centering
+\includegraphics[width=0.70 \textwidth]{VAR2.pdf} \\
+\footnotesize
+\label{VAR2}
+\end{figure}
+Figure~\ref{VAR2} shows the response of human capital to a positive shock in real per capita GDP for the same period. As we can see, apparently there is a negative effect on human capital. However, $HC_{S1}$ is biased due to the fact that we are using number of persons per universities ($\frac{N{t}}{universities_{t}}$), with $N_{t}$ also appearing in the same vector at the last position. We find it difficult to obtain a better human capital proxy for this period and we hypothesize that since the results have a downward bias, there is actually an insignificant effect of a positive shock in GDP on human capital.
+
+\emph{Limitations:} Unfortunately, our estimates are far from being efficient. The determinant of the residual covariance matrix in our Malthusian VAR is $>1000$, and when transforming the VAR into log-units, the determinant is close to zero. Thus, a linearly dependant covariance matrix is unlikely in this case.
+
+\textbf{The Demographic Transition to Modern Growth:} We use $S2$. We set up a type $(3,1)$ endogenous vector including the following variables: Secondary School Enrollment Rate (as a proxy for Human Capital), $TFR$ and $RPGDP$; and we use $p=8$. Since benefit from richer data and with a better proxy for human capital, we are able to find efficient estimates. The determinant of the residual covariance matrix is $ 0.146827$ and our Akaike's Information Criterion is relatively low ($ 7.430717$). Figure~\ref{VAR3} shows the Impulse Response Functions.
+\begin{figure}[h]
+\caption{Multiple IRF's (1960-2008)}
+\centering
+\includegraphics[width=1 \textwidth]{var3.pdf} \\
+\footnotesize
+\textit{Schwarz criterion $=10.6$, Log-likelihood function $=-77.33$, 41 included observations after adjustments (Before adjustment: 1960-2008).}
+\label{VAR3}
+\end{figure}
+As we suggested in the previous sections, a positive innovation of Human Capital causes a negative response to TFR and a positive response to GDP. The effect is both economically and statistically significant, specially after 8 years. An increase in income causes a negative response in TFR, but the effect diminishes after 10 years. It causes an oscillating positive effect on Human Capital, but if we were to increase the period, the total effect would clearly be positive. A positive TFR shock causes a negative response on both GDP and Human Capital. All these results are consistent both with the observation of stylized facts and with Unified Growth Theory.
+
+\emph{Granger Causality and Variance Decomposition:} We perform pairwise Granger Causality tests with 8 lags between our index of Human Capital, Fertility Rates and GDP per capita. We checked various null hypotheses, but we were only able to find strong evidence supporting GDP per capita Granger-causing Human Capital, which is consistent with our predictions. For a note on variance decomposition analysis, refer to the Appendix.
+
+\textbf{Peru 2005-2008:} We shall proceed to work with $S3$. We use monthly registered births to create a series of crude monthly birth rates (\emph{Crude Birth Rate}$=\frac{TNB_{national}}{1000}$), which we shall use as a proxy for fertility. Since we also rely on monthly data for Real GDP variations, we estimate a $2\times1$ VAR with 12 lags and 36 observations (after adjustments). Considering the small number of observations, we do not obtain very efficient estimates. We ignore the inefficiency and plot the impulse response functions.
+\begin{figure}[h]
+\caption{Response of Fertility to one standard deviation shock in RGDP}
+\centering
+\includegraphics[width=0.7 \textwidth]{lolo.pdf} \\
+\footnotesize
+\label{VAR4}
+\end{figure}
+As we can see in Figure~\ref{VAR4}, a structural positive shock in incomes will have a small and increasing positive shock in fertility up to the 8th month. After the 8th month, the function becomes decreasing and eventually negative before reaching one year.
+\begin{figure}[h]
+\caption{Response of RGDP to one standard deviation shock in Fertility}
+\centering
+\includegraphics[width=0.7 \textwidth]{lolo2.pdf} \\
+\footnotesize
+\label{VAR5}
+\end{figure}
+Figure~\ref{VAR5} plots the short run effect of a positive shock in fertility has on income, which appears to be negative for one year. The effect becomes positive after one year and then oscillates for some months before finally disapearing.
+
+The impulse response functions show ambiguous results. We cannot state whether a negative relation between fertility and outcome in the long run would hold in the shorter run (although Figure~\ref{VAR5} is somehow consistent with such an expectation) because of the reduced size of our sample and the inefficiency of our estimates.
+
+However, we can conclude that there is endogeneity between fertility choices and income per capita growth even in the short run, since there would not be responses to output disturbances in case fertility choices were exogenous. Thus, any approach to understand the relation between fertility and short run using ordinary least squares is bound to be biased.
+\section{Limitations, Robustness checks and sensitivity analysis}
+Our strongest limitation has been the difficulty to estimate human capital levels for a longer period. Had we been able to construct such an estimate for the period 1700-2010, we would have determined the exact moment in which an increase in the demand for human capital started to play an important role in the onset of the Demographic Transition to Modern Growth, by focusing on the impulse responses to GDP and Fertility caused by a structural positive shock on Human Capital. After carefully analyzing the stylized facts, we \emph{ad-hoc} divided our data into two periods: 1700-1920 and 1960-2010. By performing VAR analysis of each period we have been able to confirm that the Model presented in Section 4 presents an accurate explanation of the phenomena, since the first period clearly exhibits Malthusian properties, whereas the most recent one is certainly non-Malthusian.
+
+Few improvements can be achieved using $S1$. We tried to construct a better proxy for human capital but we failed to do so. It would be interesting to establish past mortality rates using time tables, and use them as an index of human capital.
+
+We concei alveternative models for the series in $2$: in the first variation we change the human capital proxy to primary education enrollment, and in the second variation we change $TFR$ for crude birth rate. In both cases, estimates are still relatively efficient. The differences in the variance decomposition between the original model (using secondary education enrollment ratio) and these new ones are minor and the evidence again supports using the explanations provided by Unified Growth Theory. We include Impulse Response Functions for these two models in the Appendix.
+
+We tried to formulate an alternative model with Public Expenditure on Education (as a percentage of GDP) as a proxy for Human Capital but our estimates were not very efficient. This is because Public Expenditure on Education was very volatile during 1960-2008 due to non-economical reasons. At any rate, public expenditure does not measure the total demand for human capital and is a poor proxy.
+
+To improve our short run analysis ($S3$), which showed ambigous results, we construct a new time series (1997-2002) using monthly crude birth rate for Lima and variations in Real GDP, but the frequency of oscillation between GDP and Fertility increases further.
+\section{Concluding Remarks}
+Using a simplified version of the Unified Growth model, we examined the long run dynamics between fertility, population and economic growth using long time series. We failed to cover the whole period in one single series, but we provide efficient estimates for the demographic transition period in Peru, and employing a VAR Model we find empirical support for the main prediction of Galor and Weil's model. Although our VAR for the period 1700-1920 is biased, we find that a positive shock in per capita income produces increments in population and near to zero decreases in education.
+We find efficient estimates for the period 1960-2008 that suggest Peru entered a Demographic Transition to the Modern Growth Regime, where increases in real per capita GDP do not produce increments in population, but have positive effects on education (human capital). Our results for this period are robust.
+
+They are totally compatible with Unified Growth Theory. An accelerating technology rate (witnessed as early as the 50's) which can be seen in fast industrialization (the \emph{Golden Age}) probably induced a demand for human capital (skilled workers). As Peruvians invested more in human capital (increases in primary, secondary and tertiary education enrollment, decreases in illiteracy, etc.), the quantity-quality tradeoff inclined towards the latter. The combination of lower fertility rates and higher life expectancy levels determined lower rates of population growth (Demographic Transition). As for 2008, economic growth and fertility remain endogenous even in the short run. Considering our estimates in 5, the simplified model in 4 and our review of stylized facts, we conclude that Peru will continue experiencing decreasing fertility and population growth rates and increasing investments in education for many more years. This will have a positive effect on economic growth.
+
+As a future research agenda, empirically, it is important to construct a better human capital index for the period 1700-2010, in order to observe the exact moment where the Demographic Transition started. Theoretically, it would be interesting to investigate the urban-rural migration endogenously, and the implications of their different rates of decreasing fertility, the effects of fast depopulation of rural areas and overpopulation of cities, on the whole macroeconomy.
+
+Surely, we would be highly content if, despite our various limitations in methodology and scope, the present paper does a minimal contribution to the understanding of the dynamics between fertility and economic growth in Peru.
+
+\pagebreak%
+\appendix
+\section*{Appendix}
+\subsection*{Variance Decomposition Analysis}
+\begin{figure}[h]
+\caption{Variance Decomposition for VAR(8) 1960-2008 (Adjusted: 1968-2008)}
+\centering
+\includegraphics[width=1 \textwidth]{vc1.pdf} \\
+\footnotesize
+\textit{The variance decomposition shows how much of the forecast error variance for endogenous variables is explained by each disturbance.}
+\label{VarianceAnalysis}
+\end{figure}
+\pagebreak%
+\subsection*{Limitations, Robustness checks and sensitivity analysis}
+\begin{figure}[h]
+\caption{Multiple IRF's (1960-2008) using Primary School Enrollment as a Proxy for Human Capital}
+\centering
+\includegraphics[width=1 \textwidth]{sss1.pdf} \\
+\footnotesize
+\textit{Schwarz criterion $=9.25$, Log-likelihood function $=-50.66$, Akaike's Information Criterion $=6.1$, 41 observations included after adjustments (Before adjustment: 1960-2008).}
+\label{Sensitivity1}
+\end{figure}
+\pagebreak%
+\begin{figure}[h]
+\caption{Multiple IRF's (1960-2008) using Crude Birth Rate instead of $TFR$}
+\centering
+\includegraphics[width=1 \textwidth]{robusto2.pdf} \\
+\footnotesize
+\textit{Schwarz criterion $=12.00$, Log-likelihood function $=-108.67$, Akaike's Information Criterion $=8.96$, 41 observations included after adjustments (Before adjustment: 1960-2008).}
+\label{Sensitivity2}
+\end{figure}
+\pagebreak%
+\subsection*{Peru between 1960 and 2008}
+\begin{figure}[h]
+\caption{The Peruvian Demographic Transition (in percentages)}
+\centering
+\includegraphics[width=0.95 \textwidth]{reallyfinal.pdf} \\
+\footnotesize
+\textit{Elaborated with data from World Bank and INEI.}
+\label{magdalena}
+\end{figure}
+\normalsize
+\pagebreak%
+\bibliographystyle{abbrv}
+\bibliography{references}
+\end{document} 
