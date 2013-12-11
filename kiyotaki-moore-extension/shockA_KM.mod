@@ -10,7 +10,7 @@
 
 // CHOICE BETWEEN MOMENTS AND IRFS : 0 for moments
 //                                   1 for irfs
-@#define irfs  = 1
+@#define irfs  = 0
 //********************************************************************//
 
 @#if (moments==0)
@@ -19,7 +19,7 @@
 periods 20100;
 
 // VARIABLES:
-var lgY, lgY_L, lgI, lgK, lgC, lgC_w, lgC_e, lgL, lgw, lgR, lgr, lgq, lgq_r, lgp, lgD, A, lgN_s,
+var lgY, lgY_L, lgI, lgK, lgC, lgC_w, lgC_e, lgL, lgw, lgR, lgr, lgq, lgq_r, lgp, lgB, lgD, A, lgN_s,
         lgAA;
 varexo e_A;
 
@@ -28,6 +28,8 @@ parameters pi, beta, rho_A, om, lambda, theta, gamma, mu, alpha, phi;
     pi        = 0.25;
     // calibration as in ...
     phi       = 0.025;
+    // ... im letting it be higher than phi
+    psi       = 0.050;
     // calibration as in D'Mello and Farhat (2007)
     theta     = 0.25;
     // calibration as in King and Rebelo (1999) and Greenwood, Herkowitz, and Huffman (1988):
@@ -46,8 +48,10 @@ model;
       *(1/((exp(lgR(+1))+exp(lgq(+1))*lambda)*exp(lgN_s)+exp(lgp(+1))*exp(lgD)))
     = pi*((exp(lgp(+1))/exp(lgp))-(1/exp(lgq))*(exp(lgR(+1))+lambda*(exp(lgq(+1))*phi+(1-phi)*exp(lgq_r(+1))))) 
       *(1/((exp(lgR(+1))+lambda*(exp(lgq(+1))*phi+(1-phi)*exp(lgq_r(+1))))*exp(lgN_s)+exp(lgp(+1))*exp(lgD)));
+    // investment equation
     (1-theta*exp(lgq))*exp(lgI) = pi*(beta*((exp(lgR)+exp(lgq)*phi*lambda)*exp(lgK(-1))+exp(lgp)*exp(lgD))
       -(1-beta)*(1-phi)*lambda*exp(lgq_r)*exp(lgK(-1)));
+    //logic
     exp(lgI)     = exp(lgK)-lambda*exp(lgK(-1));
     exp(lgL)     = (exp(lgw)/om)^(1/mu);
     (exp(lgw)/om)^(1/mu) = exp(lgK(-1))*(((1-gamma)*A)/exp(lgw))^(1/gamma);
@@ -55,10 +59,15 @@ model;
     exp(lgr)     = exp(lgR)-(1-lambda);
     exp(lgY)     = A*(exp(lgK(-1))^(gamma))*(exp(lgL)^(1-gamma));
     exp(lgY)     = exp(lgI)+exp(lgC);
+    // simple logic
     exp(lgC)     = exp(lgC_e)+exp(lgC_w);
+    // does not change
     exp(lgC_w)   = exp(lgw)*exp(lgL);
-    exp(lgC_e)   = (1-beta)*((exp(lgR)+exp(lgq)*lambda)*exp(lgK(-1))+exp(lgp)*exp(lgD)+pi*(1-phi)*(exp(lgq_r)-exp(lgq))*lambda*exp(lgK(-1)));
+    // adding bond here
+    exp(lgC_e)   = (1-beta)*((exp(lgR)+exp(lgq)*lambda)*exp(lgK(-1))+exp(lgp)*exp(lgD)+pi*(1-phi)*(exp(lgq_r)-exp(lgq))*lambda*exp(lgK(-1)))+pi*(1-psi)*(exp(lgq_r)-exp(lgq))*exp(lgB(-1));
     exp(lgN_s)   = theta*exp(lgI)+phi*pi*lambda*exp(lgK(-1))+(1-pi)*lambda*exp(lgK(-1));
+    // new
+    exp(lgB)     = psi*pi*exp(lgB(-1))+(1-pi)*exp(lgB(-1));
     log(A)       = rho_A*log(A(-1))+e_A;
     exp(lgAA)    = gamma*((1-gamma)/om)^((1-gamma)/(gamma+mu))*A^((1+mu)/(gamma+mu));
     exp(lgD)     = 1;
@@ -75,6 +84,7 @@ lgq = 0.0681;
 lgq_r = -0.0125;
 lgR = -3.3264;
 lgK = 2.3254;
+lgB = 3;
 lgw = 0.7068;
 lgL = -1.0131;
 lgY = 0.0986;
